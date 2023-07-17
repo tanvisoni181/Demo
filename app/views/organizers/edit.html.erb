@@ -1,0 +1,23 @@
+<h1> Edit Organizer form </h1>
+<%= form_with model: @organizer do |f| %>
+<div>
+	<%= f.label :first_name %>
+	<%= f.text_field :first_name %>
+</div>
+<div>
+	<%= f.label :last_name %>
+	<%= f.text_field :last_name %>
+</div>
+
+<div>
+	<%= f.label :address %>
+	<%= f.text_field :address%>
+</div>
+<div>
+	<%= f.label :phone_no %>
+	<%= f.text_field :phone_no %>
+</div>
+
+<div><%= f.submit %></div>
+<% end %>
+

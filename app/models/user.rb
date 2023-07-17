@@ -6,5 +6,7 @@ class User < ApplicationRecord
 
    #Roles of user
    
-   enum :role, %i{ organizer traveller }      
+   enum :role, %i{ organizer traveller }   
+   has_one :organizer
+   # has_one :traveller   
 end

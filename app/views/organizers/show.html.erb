@@ -1,0 +1,10 @@
+<h1>Details of organizer <%= current_user.email%></h1>
+<section>
+	<p>First_name: <%= @organizer.first_name %></p>
+    <p>Last name : <%= @organizer.last_name %></p>
+    <p> Address: <%= @organizer.address %></p>
+    <p>Phone no: <%= @organizer.phone_no%></p>
+    <button><%= link_to 'Back', root_path %></button>
+    <button><%= link_to 'Add Tour'%></button>
+</section> 
+

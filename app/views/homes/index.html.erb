@@ -1,0 +1,42 @@
+<% if user_signed_in? %> 
+ <div> Welcome <%= current_user.email %> </div><br/>
+
+ <%if current_user.role == "organizer"%>
+     <div><h2><%=current_user&.role %></h2></div>
+
+      <%if current_user.organizer == nil %>
+        <div>
+         <%= link_to "Fill_organizer_form", new_organizer_path%>
+      </div>
+      <%#elsif current_user.organizer.tours ==nil %>
+        <%= link_to "Enter tour Details"%>
+        <% else %>
+        <%= link_to "Organizer Details", organizer_path(current_user)%>
+        <%#= link_to "Tour Details", organizer_path(current_user.organizer)%>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+      <%end%>
+
+
+<% elsif current_user.role == "traveller" %>
+      <%= link_to "see all avaliable tours",travellers_path %>
+      <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+
+<% else %>
+      <%= button_to "Log in", new_user_session_path %> 
+      <h1 class="text-center">GoTravel.com</h1><br><br>
+      <div class="text-center">  
+      <%= button_to "Sign Up",new_user_registration_path,method: :get%><br>
+      </div>
+<%end%>
+<% else %>
+    
+      <center><h1 class="text-center">GoTravel.com</h1><br><br></center>
+     <center> <div class="text-center">
+       <%= button_to "Log in", new_user_session_path %> <br>  
+      <%= button_to "Sign Up",new_user_registration_path,method: :get%><br>
+      </div>  
+      </center>
+ <% end %>
+
+
+
