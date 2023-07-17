@@ -21,6 +21,10 @@
       <%= link_to "see all avaliable tours",travellers_path %>
       <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
 
+<% elsif current_user.role == "partner" %>
+      <%= link_to "Register your Hotel on our Portal",new_hotel_path %>
+      <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+
 <% else %>
       <%= button_to "Log in", new_user_session_path %> 
       <h1 class="text-center">GoTravel.com</h1><br><br>
