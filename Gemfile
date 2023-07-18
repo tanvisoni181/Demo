@@ -17,6 +17,8 @@ gem 'activeadmin', '~> 3.0'
 gem 'sass-rails', '~> 6.0'
 gem 'faker', '~> 3.2'
 gem 'byebug', '~> 11.1', '>= 11.1.3'
+gem "image_processing", ">= 1.2"
+
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"

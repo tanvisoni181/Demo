@@ -1,0 +1,40 @@
+<h2>New Tour created by <%= current_user.email%></h2>
+<%= form_with model: [@organizer, @organizer.tours.build] do |f| %>
+<div>
+	<%= f.label :images %>
+	<%= f.file_field :images, multiple: true %>
+</div>
+<br>
+<div>
+	<%= f.label :destination_name %>
+	<%= f.text_field :destination_name%>
+</div>
+<br>
+<div>
+	<%= f.label :pickup_and_dropping_point %>
+	<%= f.text_field :pickup_and_dropping_point %>
+</div>
+<br>
+<div>
+	<%= f.label :pickup_date %>
+	<%= f.date_field :pickup_date %>
+</div>
+<br>
+<div>
+
+	<%= f.label :dropping_date %>
+	<%= f.date_field :dropping_date %>
+</div>
+<br>
+<div>
+	<%= f.label :inclusions %>
+	<%= f.text_area :inclusions%>
+</div>
+<br>
+<div>
+	<%= f.label :amount %>
+	<%= f.number_field :amount %>
+</div>
+<br>
+<div><%= f.submit %></div>
+<% end %>

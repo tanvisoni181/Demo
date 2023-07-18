@@ -1,8 +1,9 @@
 class AdminUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include Tourable
   devise :database_authenticatable, 
          :recoverable, :rememberable, :validatable
 
-  has_many :tours, as: :tourable, dependent: :destroy        
+         
 end
