@@ -1,5 +1,5 @@
-<h1>Details of organizer <%= current_user.email%></h1>
-<section>
+<h1>Details of organizer <%= current_user.email %></h1>
+<h3>
 	<p>First_name: <%= @organizer.first_name %></p>
     <p>Last name : <%= @organizer.last_name %></p>
     <p> Address: <%= @organizer.address %></p>
@@ -7,5 +7,5 @@
     <button><%= link_to 'Back', root_path %></button>
 
     <button><%= link_to 'Add Tour', new_organizer_tour_path(@organizer)%></button>
-</section> 
+</h3> 
 

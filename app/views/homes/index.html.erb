@@ -1,28 +1,28 @@
 <% if user_signed_in? %> 
- <div> Welcome <%= current_user.email %> </div><br/>
+ <div><h1> Welcome <%= current_user.email %> </h1></div><br/>
 
- <%if current_user.role == "organizer"%>
+ <%if current_user.role == "Organizer"%>
      <div><h2><%=current_user&.role %></h2></div>
 
       <%if current_user.organizer == nil %>
         <div>
          <%= link_to "Fill_organizer_form", new_organizer_path%>
-      </div>
+        </div>
       <%elsif current_user.organizer.tours ==nil %>
         <%= link_to "Enter tour Details"%>
         <% else %>
-        <%= link_to "Organizer Details", organizer_path(current_user)%>
-        <%= link_to "Tour Details", organizer_tours_path(current_user.organizer)%>
+       <h3> <%= link_to "Organizer Details", organizer_path(current_user)%>
+        <%= link_to "Tour Details", organizer_tours_path(current_user.organizer)%></h3>
         <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
       <%end%>
 
 
-<% elsif current_user.role == "traveller" %>
-      <%= link_to "see all avaliable tours",travellers_path %>
+<% elsif current_user.role == "Traveller" %>
+     <h3> <%= link_to "see all avaliable tours",travellers_path %></h3>
       <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
 
-<% elsif current_user.role == "partner" %>
-      <%= link_to "Register your Hotel on our Portal",new_hotel_path %>
+<% elsif current_user.role == "Partner" %>
+     <h3> <%= link_to "Register your Hotel on our Portal",new_hotel_path %></h3>
       <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
 
 <% else %>

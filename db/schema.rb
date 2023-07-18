@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_18_091611) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_18_134013) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -95,6 +95,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_091611) do
     t.datetime "updated_at", null: false
     t.integer "organizer_id", null: false
     t.index ["organizer_id"], name: "index_tours_on_organizer_id"
+  end
+
+  create_table "travellers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "address"
+    t.integer "phone_no"
+    t.integer "no_of_seats"
+    t.integer "paying_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

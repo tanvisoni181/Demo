@@ -1,8 +1,9 @@
 <h2>Edit Tour <%= @tour.destination_name %></h2>
 <%= form_with model: [ @organizer, @tour ] do |f| %>
+
 <div>
 	<%= f.label :images %>
-	<%= f.file_field :images %>
+	<%= f.file_field :images%>
 </div>
 <br>
 <div>

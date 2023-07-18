@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :organizers do 
     resources :tours
   end
-  resources :hotels
+  resources :hotels, :travellers
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

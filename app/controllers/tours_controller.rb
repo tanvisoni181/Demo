@@ -25,7 +25,8 @@ class ToursController < ApplicationController
   end
 
   def edit
-    @tour.images.attach(params[:images])
+   
+     @tour.images.attach(params[:images])
   end
 
   def update
