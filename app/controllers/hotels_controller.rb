@@ -10,7 +10,7 @@ class HotelsController < ApplicationController
 	def create
 		@hotel = Hotel.new(set_params)
 		if @hotel.save
-			redirect_to hotel_path(@hotel) 
+			redirect_to hotel_path(@hotel)
 		else
 			render new
 		end
@@ -36,6 +36,6 @@ class HotelsController < ApplicationController
 
 	private
 	def set_params
-		params.require(:hotel).permit( :hotel_name, :city)
+		params.require(:hotel).permit(:hotel_name, :city)
 	end
 end
