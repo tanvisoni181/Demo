@@ -11,6 +11,8 @@ class ToursController < ApplicationController
 
   def create
     @tour = @organizer.tours.new(set_params)
+    @tour.images.attach(params[:images])
+
     if @tour.save
       redirect_to organizer_tours_path
     else
@@ -19,9 +21,11 @@ class ToursController < ApplicationController
   end
 
   def show
+    @tour.images.attach(params[:images])
   end
 
   def edit
+    @tour.images.attach(params[:images])
   end
 
   def update

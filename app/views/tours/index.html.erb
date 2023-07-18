@@ -8,13 +8,14 @@
 		<th>Delete Tour</th>
 	</thead>
 	<tbody>
+		<% @organizer.tours.each do |tour| %>
 		<tr>
-			<% @organizer.tours.each do |tour| %>
 			<td><%= tour.destination_name %></td>
 			<td><%= link_to 'Show', organizer_tour_path(id: tour.id)%></td>
 			<td><%= link_to 'Edit', edit_organizer_tour_path(id: tour.id) %></td>
 			<td><%= link_to 'Delete', [tour.organizer,tour], data: {turbo_method: :delete, turbo_confirm:'Are you sure?'}%></td>
-			<% end %>
 		</tr>
+		<% end %>
 	</tbody>
 </table>
+
