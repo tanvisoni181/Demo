@@ -4,6 +4,7 @@
 	<thead>
 		<th>Destination Name</th>
 		<th>Tour Detail</th>
+		<th>Booked Hotels</th>
 		<th>Edit Tour</th>
 		<th>Delete Tour</th>
 	</thead>
@@ -12,6 +13,7 @@
 		<tr>
 			<td><%= tour.destination_name %></td>
 			<td><%= link_to 'Show', organizer_tour_path(id: tour.id)%></td>
+			<td><%= link_to 'Hotels', hotel_collaborates_path(@organizer.collaborates)%></td>
 			<td><%= link_to 'Edit', edit_organizer_tour_path(id: tour.id) %></td>
 			<td><%= link_to 'Delete', [tour.organizer,tour], data: {turbo_method: :delete, turbo_confirm:'Are you sure?'}%></td>
 		</tr>

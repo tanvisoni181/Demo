@@ -10,7 +10,7 @@
 		<tr>
 			<td><%= hotel.hotel_name%></td>
 			<td><%= hotel.city %></td>
-			<td><%= link_to 'Book here', new_collaborate_path%></td>
+			<td><%= link_to 'Book here', new_hotel_collaborate_path(hotel) %></td>
        <% end %>
        </tr>
 </tbody>

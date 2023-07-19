@@ -1,2 +1,6 @@
-<h1>Collaborates#index</h1>
-<p>Find me in app/views/collaborates/index.html.erb</p>
+<h2>Booked Hotel Details </h2>
+<%# @organizer.collaborates.each do |collaborate| %>
+<% Hotel.joins(collaborates: :organizer).where("hotels.id = ?", current_user.id).pluck("hotels.hotel_name").each do |collaborate| %>
+   <p>Hotel Name: <%= collaborate %></p>
+<% end %>
+<button><%= link_to 'Add more Hotel', hotels_path %></button>
