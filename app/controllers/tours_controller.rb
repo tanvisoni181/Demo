@@ -14,7 +14,7 @@ class ToursController < ApplicationController
     @tour.images.attach(params[:images])
 
     if @tour.save
-      redirect_to organizer_tours_path
+      redirect_to organizer_tour_path(id: @tour.id)
     else
       render new
     end
