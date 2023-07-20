@@ -8,9 +8,10 @@
 	<tbody>
 		<% @hotels.each do |hotel| %>
 		<tr>
+			
 			<td><%= hotel.hotel_name%></td>
 			<td><%= hotel.city %></td>
-			<td><%= link_to 'Book here', new_hotel_collaborate_path(hotel) %></td>
+			<td><%= link_to 'Book here', new_hotel_collaborate_path(hotel, id: @tour.id) %></td>
        <% end %>
        </tr>
 </tbody>

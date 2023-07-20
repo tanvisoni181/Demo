@@ -11,5 +11,13 @@
 <p>Hotel for Stay:</p>
 <p>Inclusions: <%= @tour.inclusions %></p>
 <p>Amount: <%= @tour.amount %></p>
+<div>
+   <p>Booked Hotels:
+   <% @tour.hotels.each do |hotel|%>
+     <%= link_to hotel.hotel_name%>,  
+      <% end %>
+      <button><%= link_to 'Select Hotels', hotels_path(id: @tour.id) %></button>
+</p>
+</div>
 <button><%= link_to 'Back', organizer_tours_path %></button>
-<button><%= link_to 'Select Hotels', hotels_path %></button>
+

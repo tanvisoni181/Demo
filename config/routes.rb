@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get 'collaborates/index'
+  # get 'collaborates/index'
+    
+    get 'information/:id', to:'collaborates#information', as: 'information'
 
   
   devise_for :admin_users, ActiveAdmin::Devise.config

@@ -6,9 +6,10 @@ class Collaborate < ApplicationRecord
 
   
   belongs_to :hotel
-  belongs_to :organizer
+  belongs_to :tour
 
-  # validates :room_type, :no_of_rooms, presence: true
+   # validates :room_type, :no_of_rooms,:date, presence: true
+     # validates :tour_id, :hotel_id, uniqueness:true
 
   enum :room_type, %i{ Delux Premium Suite }
 end

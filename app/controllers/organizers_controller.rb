@@ -8,12 +8,14 @@ class OrganizersController < ApplicationController
 
   def create
     @organizer = current_user.build_organizer(set_params)
-    if @organizer.save
-      cookies[:organizer_info] = @organizer_id
-      redirect_to @organizer
+    byebug
+    respond_to do |format|
+     if @organizer.save
+      format.html { redirect_to(@organizer, notice: 'User was successfully created.') }
     else
-      render new
+      format.html { render action: 'new' }
     end
+  end
   end
 
 

@@ -1,13 +1,21 @@
 <h2>Details for booking</h2>
-<%= form_with model: [@hotel, @hotel.collaborates.build(organizer_id:@organizer.id)] do |f| %>
+
+<%= form_with model: [@hotel, @hotel.collaborates.build(tour_id:@tour.id)] do |f| %>
+
 <div>
 	<%= f.label :no_of_rooms %>
 	<%= f.number_field :no_of_rooms %>
 </div>
+<%= f.hidden_field :tour_id %>
 <br>
 <div>
 	<%= f.label :room_type %>
 	<%= f.select :room_type, Collaborate.room_types.keys.map{|room_type| [room_type.humanize,room_type]}%>
+</div>
+<br>
+<div>
+	<%= f.label :date%>
+	<%= f.date_field :Date%>
 </div>
 <br>
 <div><%= f.submit 'Booking Comfirmation'%></div>

@@ -1,5 +1,5 @@
 <% if user_signed_in? %> 
- <div><h1> Welcome <%= current_user.email %> </h1></div><br/>
+ <div><h2> Welcome <%= current_user.email %> </h2></div><br/>
 
  <%if current_user.role == "Organizer"%>
      <div><h2><%=current_user&.role %></h2></div>

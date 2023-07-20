@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_19_061459) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_050821) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -66,14 +66,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_061459) do
   end
 
   create_table "collaborates", force: :cascade do |t|
+    t.integer "tour_id", null: false
     t.integer "hotel_id", null: false
-    t.integer "organizer_id", null: false
+    t.integer "room_type"
+    t.integer "no_of_rooms"
+    t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "no_of_rooms"
-    t.integer "room_type"
     t.index ["hotel_id"], name: "index_collaborates_on_hotel_id"
-    t.index ["organizer_id"], name: "index_collaborates_on_organizer_id"
+    t.index ["tour_id"], name: "index_collaborates_on_tour_id"
   end
 
   create_table "hotels", force: :cascade do |t|
@@ -130,7 +131,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_061459) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "collaborates", "hotels"
-  add_foreign_key "collaborates", "organizers"
+  add_foreign_key "collaborates", "tours"
   add_foreign_key "organizers", "users"
   add_foreign_key "tours", "organizers"
 end

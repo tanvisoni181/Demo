@@ -1,6 +1,8 @@
-<h2>Booked Hotel Details </h2>
-<%# @organizer.collaborates.each do |collaborate| %>
-<% Hotel.joins(collaborates: :organizer).where("hotels.id = ?", current_user.id).pluck("hotels.hotel_name").each do |collaborate| %>
-   <p>Hotel Name: <%= collaborate %></p>
+<h2>Your hotel Booking details  </h2>
+<% @hotel.collaborates.each do |collaborate| %>
+  <p>Hotel Id:<%= collaborate.hotel_id %></p>
+  <p>Tour Id:<%= collaborate.tour_id %></p>
+  <p>Room_type: <%= collaborate.room_type%></p>
+  <p>No_of_rooms: <%= collaborate.no_of_rooms%></p>
 <% end %>
-<button><%= link_to 'Add more Hotel', hotels_path %></button>
+

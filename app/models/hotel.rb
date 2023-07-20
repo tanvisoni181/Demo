@@ -9,7 +9,7 @@ class Hotel < ApplicationRecord
   
 
     has_many :collaborates
-    has_many :organizers, through: :collaborates
+    has_many :tours, through: :collaborates
     
     validates :hotel_name, :city, presence:true 
 
