@@ -5,36 +5,41 @@ class ToursController < ApplicationController
   def index
     @tours = @organizer.tours.all
   end
-  def new
-    @tour = Tour.new
+  def new 
+    @tour = @organizer.tours.new
   end
 
   def create
     @tour = @organizer.tours.new(set_params)
     @tour.images.attach(params[:images])
-
-    if @tour.save
-      redirect_to organizer_tour_path(id: @tour.id)
-    else
-      render new
-    end
+    respond_to do |format|
+     if @tour.save
+      format.html {redirect_to organizer_tour_path(id: @tour.id), flash: {notice: 'Tour is created succesfully' }  }
+     else
+      format.html {render action: "new" }
+     end
+  end
   end
 
   def show
+
+    # @hotel = Hotel.find(params[:id])
+    
     @tour.images.attach(params[:images])
   end
 
   def edit
-   
      @tour.images.attach(params[:images])
   end
 
   def update
-    if @tour.update(set_params)
-      redirect_to organizer_tour_path
-    else
-      render :edit 
-    end
+    respond_to do |format|
+      if @tour.update(set_params)
+        format.html {redirect_to organizer_tour_path, flash: {notice: 'Tour is updated succesfully.'} }
+      else
+        render :edit 
+      end
+    end  
   end
 
   def destroy

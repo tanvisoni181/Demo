@@ -25,21 +25,24 @@ class CollaboratesController < ApplicationController
     @hotel = Hotel.find(params[:hotel_id])
      
     @collaborate = @hotel.collaborates.new(set_params)
+
     if @collaborate.save
-     
+      
       flash[:notice] = "Booking has been confirmed successfully."
-      redirect_to hotel_collaborates_path
+      redirect_to hotel_collaborate_path(id: @collaborate.id)
     else
       render :new 
     end
   end
 
   def show
-    organizer_id = current_user.organizer.id 
-    @organizer = Organizer.find(organizer_id)
-    @tour = @organizer.tours.find_by(params[:tour_id])
-    @hotel = Hotel.find(params[:hotel_id])
-    @collaborate = @tour.collaborates.find(params[:id])
+   
+     organizer_id = current_user.organizer.id 
+     @organizer = Organizer.find(organizer_id)
+     @tour = @organizer.tours.find_by(params[:tour_id])
+
+     @hotel = Hotel.find(params[:hotel_id])
+     @collaborate = @hotel.collaborates.find(params[:id])
   end
 
   private

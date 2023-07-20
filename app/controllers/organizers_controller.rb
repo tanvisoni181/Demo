@@ -8,7 +8,7 @@ class OrganizersController < ApplicationController
 
   def create
     @organizer = current_user.build_organizer(set_params)
-    byebug
+   
     respond_to do |format|
      if @organizer.save
       format.html { redirect_to(@organizer, notice: 'User was successfully created.') }

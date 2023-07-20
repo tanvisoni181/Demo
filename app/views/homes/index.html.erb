@@ -8,8 +8,8 @@
         <div>
          <%= link_to "Fill_organizer_form", new_organizer_path%>
         </div>
-      <%elsif current_user.organizer.tours ==nil %>
-        <%= link_to "Enter tour Details"%>
+      <%#elsif current_user.organizer.tours ==nil %>
+        <%#= link_to "Enter tour Details"%>
         <% else %>
        <h3> <%= link_to "Organizer Details", organizer_path(current_user)%>
         <%= link_to "Tour Details", organizer_tours_path(current_user.organizer)%></h3>
