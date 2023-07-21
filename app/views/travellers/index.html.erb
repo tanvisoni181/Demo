@@ -36,7 +36,7 @@
        <% end %>
 
       <div class="description">
-        <p>Destination Name: <%= tour.destination_name %> [ <%= link_to 'Click for more details'%> ] </p>
+        <p>Destination Name: <%= tour.destination_name %> [ <%= link_to 'Click for more details', traveller_path(tour)%> ] </p>
       </div>
     </div>
   <% end %>

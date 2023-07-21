@@ -1,13 +1,16 @@
 ActiveAdmin.register Tour do
-  remove_filter :organizers
+  remove_filter :organizer
+  remove_filter :collaborates
   remove_filter :hotels
+
+  
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-   permit_params :destination_name, :pickup_and_dropping_point, :pickup_date, :dropping_date, :inclusions, :images, :amount, :tourable_type, :tourable_id
+   permit_params :destination_name, :pickup_and_dropping_point, :pickup_date, :dropping_date, :inclusions, :images, :amount
   #
   # or
   #

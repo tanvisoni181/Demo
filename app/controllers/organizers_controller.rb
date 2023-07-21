@@ -20,9 +20,7 @@ class OrganizersController < ApplicationController
 
 
   def show
-    organizer = current_user.organizer
-    organizer_id = organizer.id
-    @organizer = Organizer.find(organizer_id)
+    @organizer = Organizer.find(params[:id])
   end
 
    
