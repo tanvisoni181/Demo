@@ -11,6 +11,8 @@ class Tour < ApplicationRecord
   has_many :collaborates
   has_many :hotels, through: :collaborates
 	has_many_attached :images
+  has_many :bookings
+  has_many :travellers, through: :bookings
 
   validate :pickup_date_cannot_be_in_the_past
   validate :dropping_date_cannot_be_in_the_past
