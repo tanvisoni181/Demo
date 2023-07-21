@@ -2,4 +2,4 @@
 <p>Hotel Name: <%= @hotel.hotel_name %></p>
 <p>City: <%= @hotel.city %></p>
 <button><%= link_to 'Edit details', edit_hotel_path(@hotel) %> </button>        
-<button><%= link_to 'Registered',  hotels_path %></button>
+<button><%= link_to 'Registered',register_path(@hotel) %></button>

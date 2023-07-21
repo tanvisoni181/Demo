@@ -1,7 +1,6 @@
 class HotelsController < ApplicationController
 
 	def index 
-		@tour = Tour.find_by(id: params[:id])
 		@hotels = Hotel.all
 	end
 
@@ -34,6 +33,11 @@ class HotelsController < ApplicationController
 			render :edit 
 		end
 	end
+
+	def register
+		@hotel = Hotel.find(params[:id])
+	end
+
 	
 
 	private

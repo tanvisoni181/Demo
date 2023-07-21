@@ -10,13 +10,16 @@
 <p>Dropping Date: <%= @tour.dropping_date %></p>
 <p>Inclusions: <%= @tour.inclusions %></p>
 <p>Amount: <%= @tour.amount %></p>
+
 <div>
    <p>Booked Hotels:
    <% @tour.hotels.each do |hotel|%>
      <%= link_to hotel.hotel_name%>,  
       <% end %>
-      <button><%= link_to 'Select Hotels', hotels_path(id: @tour.id) %></button>
-</p>
+
+      <button><%= link_to 'Select Hotels', organizer_tour_hotels_path(organizer_id:@tour.organizer.id, tour_id: @tour.id) %></button> 
+   </p>
 </div>
+
 <button><%= link_to 'Back', organizer_tours_path %></button>
 

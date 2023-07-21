@@ -1,4 +1,5 @@
 class CollaboratesController < ApplicationController
+
   def index
     # organizer_id = current_user.organizer.id 
     # @organizer = Organizer.find(organizer_id)
@@ -7,36 +8,33 @@ class CollaboratesController < ApplicationController
   end
 
   def new
-    
-    # organizer_id = current_user.organizer.id
-    # @organizer = Organizer.find(organizer_id)
-
-    # @tour = @organizer.tours.find(params[:id])
-   
-
-    @tour = Tour.find(params[:id])
+    organizer_id = current_user.organizer.id 
+    @organizer = Organizer.find(organizer_id)
+    @tour = @organizer.tours.find(params[:tour_id])
     @hotel = Hotel.find(params[:hotel_id])
     
-    @collaborate = @hotel.collaborates.new(tour_id: @tour.id)
+    @collaborate = @tour.collaborates.new(hotel_id:@hotel.id)
   end
 
   def create
-   
+     organizer_id = current_user.organizer.id 
+    @organizer = Organizer.find(organizer_id)
+    @tour = @organizer.tours.find(params[:tour_id])
     @hotel = Hotel.find(params[:hotel_id])
      
-    @collaborate = @hotel.collaborates.new(set_params)
+    @collaborate = @tour.collaborates.new(set_params.merge(hotel_id:@hotel.id))
 
     if @collaborate.save
       
       flash[:notice] = "Booking has been confirmed successfully."
-      redirect_to hotel_collaborate_path(id: @collaborate.id)
+      redirect_to organizer_tour_hotel_collaborate_path(id: @collaborate.id)
     else
       render :new 
     end
   end
 
   def show
-   
+    
      organizer_id = current_user.organizer.id 
      @organizer = Organizer.find(organizer_id)
      @tour = @organizer.tours.find_by(params[:tour_id])

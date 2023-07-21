@@ -1,2 +1,44 @@
-<h1>Travellers#index</h1>
-<p>Find me in app/views/travellers/index.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Show Images</title>
+  <style>
+    /* Basic styles for layout and image containers */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .image-container {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      max-width: 400px;
+    }
+
+    .image {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .description {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>All Tour List</h2>
+
+  <% @tours.each do |tour| %>
+    <div class="image-container">
+       <% tour.images.each do |image| %>
+       <%= image_tag url_for(image) %>
+       <% end %>
+
+      <div class="description">
+        <p>Destination Name: <%= tour.destination_name %> [ <%= link_to 'Click for more details'%> ] </p>
+      </div>
+    </div>
+  <% end %>
+</body>
+</html>

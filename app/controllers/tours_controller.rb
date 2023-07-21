@@ -2,29 +2,31 @@ class ToursController < ApplicationController
 
    before_action :find_organizer_id , only: %i[ index new create show edit update destroy ] 
    before_action :find_tour_id, only: %i[ show edit update destroy ] 
+
   def index
     @tours = @organizer.tours.all
   end
+
   def new 
     @tour = @organizer.tours.new
   end
 
   def create
+
     @tour = @organizer.tours.new(set_params)
     @tour.images.attach(params[:images])
     respond_to do |format|
      if @tour.save
       format.html {redirect_to organizer_tour_path(id: @tour.id), flash: {notice: 'Tour is created succesfully' }  }
+     
      else
       format.html {render action: "new" }
      end
+    end
   end
-  end
+
 
   def show
-
-    # @hotel = Hotel.find(params[:id])
-    
     @tour.images.attach(params[:images])
   end
 
@@ -43,6 +45,7 @@ class ToursController < ApplicationController
   end
 
   def destroy
+    @tour.collaborates.destroy_all
     @tour.destroy
 
     redirect_to organizer_tours_path
@@ -58,7 +61,9 @@ class ToursController < ApplicationController
      organizer_id = current_user.organizer.id 
      @organizer = Organizer.find(organizer_id)
   end
+
   def find_tour_id
     @tour = @organizer.tours.find(params[:id])
   end
+
 end
