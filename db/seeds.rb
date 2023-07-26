@@ -7,4 +7,3 @@
 #   Character.create(name: "Luke", movie: movies.first)
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
-@hotel = Hotel.create!(hotel_name:'Hotel Jardian', city:'indore')

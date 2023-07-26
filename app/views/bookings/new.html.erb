@@ -1,0 +1,30 @@
+<h2>Booking Form</h2>
+<%= form_with model: [@traveller, @traveller.bookings.build(tour_id:@tour.id)] do |f| %>
+  <% byebug %>
+  <%= f.hidden_field :tour_id%>
+  <%#= f.hidden_field :traveller_id, value: current_user.id %>
+  <div>
+    <%= f.label :traveller_name %>
+    <%= f.text_field :traveller_name %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+  <div>
+    <%= f.label :number_of_participants %>
+    <%= f.number_field :traveller_count %>
+  </div>
+  <div>
+    <%= f.label :advance_payment %>
+    <%= f.number_field :amount %>
+  </div>
+  <%= f.submit "Submit Booking" %>
+<% end %>
+
+
+
+
+
+
+

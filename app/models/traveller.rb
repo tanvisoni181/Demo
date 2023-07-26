@@ -1,4 +1,4 @@
-class Traveller < ApplicationRecord
-	has_many :bookings
+class Traveller < User
+	has_many :bookings, as: :traveller, dependent: :destroy
 	has_many :tours , through: :bookings
 end

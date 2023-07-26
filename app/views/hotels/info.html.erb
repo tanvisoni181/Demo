@@ -1,0 +1,18 @@
+<h2>List of hotel registered by <%= current_user.email%></h2>
+ <table>
+ 	<thead>
+ 		<th>Hotel Name</th>
+ 		<th>City</th>
+ 		<th>Action</th>
+ 	</thead>
+ 	<tbody>
+ 		<% @partner.hotels.each do |hotel|%>
+ 		<tr> 
+ 			<td><%= hotel.hotel_name %></td>
+ 			<td><%= hotel.city %></td>
+ 			<td><%= link_to 'Remove', [hotel.partner, hotel], data: {turbo_method: :delete, turbo_confirm: 'Are you sure? '} %></td>
+ 		</tr>
+ 		<% end %>
+ 	</tbody>
+ </table>
+ <button><%= link_to 'Back', root_path %></button>

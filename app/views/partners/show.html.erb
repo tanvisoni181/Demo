@@ -1,0 +1,7 @@
+<h2>Details of <%=current_user.email%></h2>
+<p>Name: <%= @partner.name %></p>
+<p>Email: <%= @partner.email %></p>
+<p>Address: <%= @partner.address %></p>
+<p>Phone Number: <%= @partner.phone_no %></p>
+
+<button><%= link_to 'Register your Hotel', new_partner_hotel_path(@partner)%></button>

@@ -1,2 +1,12 @@
 <h1>Register your hotel !!</h1>
-<%= render 'form' %>
+<%= form_with model: [@partner, @partner.hotels.build] do |f| %>
+<div class="field">
+	<%= f.label :hotel_name %>
+	<%= f.text_field :hotel_name %>
+</div>
+<div class="field">
+	<%= f.label :city %>
+	<%= f.text_field :city %>
+</div>
+<div> <%= f.submit %></div>
+<% end %>

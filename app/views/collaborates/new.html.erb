@@ -2,6 +2,12 @@
 
 <%= form_with model: [@organizer, @tour, @collaborate], url: organizer_tour_hotel_collaborates_path(@organizer, @tour, @hotel) do |f| %>
 
+  <% if f.object.errors.any? %>
+  <%= f.object.errors.full_messages.each do |msg| %>
+     <%= msg %>
+     <% end %>
+  <% end %>  
+
 <div>
 	<%= f.label :no_of_rooms %>
 	<%= f.number_field :no_of_rooms %>
@@ -14,9 +20,13 @@
 </div>
 <br>
 <div>
-	<%= f.label :date%>
-	<%= f.date_field :Date%>
+	<%= f.label :check_in%>
+	<%= f.date_field :check_in%>
 </div>
 <br>
+<div>
+	<%= f.label :check_out%>
+	<%= f.date_field :check_out%>
+</div>
 <div><%= f.submit 'Booking Comfirmation'%></div>
 <% end %>

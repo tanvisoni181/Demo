@@ -1,22 +1,23 @@
 <% if user_signed_in? %> 
- <% if current_user.role == 'Organizer'%>
+ <% if current_user.type == 'Organizer'%>
 <h1>Details of organizer <%= current_user.email %></h1>
 <h3>
-	   <p>First_name: <%= @organizer.first_name %></p>
-    <p>Last name : <%= @organizer.last_name %></p>
-    <p> Address: <%= @organizer.address %></p>
-    <p>Phone no: <%= @organizer.phone_no%></p>
+	 <p>Name: <%= @organizer.name %></p>
+   <p>Email: <%= @organizer.email %></p>
+   <p> Address: <%= @organizer.address %></p>
+   <p>Phone no: <%= @organizer.phone_no%></p>
 
 
     <button><%= link_to 'Back', root_path %></button>
 
     <button><%= link_to 'Add Tour', new_organizer_tour_path(@organizer)%></button>
 <h3>
-     <% elsif current_user.role =='Traveller' %>
+     <% elsif current_user.type =='Traveller' %>
      <div>
+          <h2>Details of Organizer</h2>
       <h3>
-       <p>First_name: <%= @organizer.first_name %></p>
-       <p>Last name : <%= @organizer.last_name %></p>
+       <p>First_name: <%= @organizer.name %></p>
+       <p>Last name : <%= @organizer.email %></p>
        <p> Address: <%= @organizer.address %></p>
        <p>Phone no: <%= @organizer.phone_no%></p>
      </h3>

@@ -1,12 +1,13 @@
 <h2>Details of Tour <%= @tour.destination_name%></h2>
+<%= flash[:notice]%> 
 <p>Images of Tour:
 <% @tour.images.each do |image| %>
    <%= image_tag url_for(image) %>
 <% end %>
 </p>
-<p>Destination Name:<%= @tour.destination_name %></p>
+<p>Destination Name: <%= @tour.destination_name %></p>
 <p>Pick up / Dropping Point: <%= @tour.pickup_and_dropping_point %></p>
-<p>Pick up Date:<%= @tour.pickup_date %></p>
+<p>Pick up Date: <%= @tour.pickup_date %></p>
 <p>Dropping Date: <%= @tour.dropping_date %></p>
 <p>Inclusions: <%= @tour.inclusions %></p>
 <p>Amount: <%= @tour.amount %></p>

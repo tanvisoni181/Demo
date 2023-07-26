@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_21_104319) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_26_085259) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -28,8 +28,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_104319) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -48,7 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_104319) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+    t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -67,16 +67,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_104319) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer "tour_id", null: false
-    t.integer "traveller_id", null: false
-    t.datetime "booking_date", default: "2023-07-05 10:33:00"
-    t.integer "booking_id"
     t.integer "traveller_count"
     t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["booking_id"], name: "index_bookings_on_booking_id"
+    t.string "traveller_type"
+    t.integer "traveller_id"
+    t.string "traveller_name"
+    t.string "email"
     t.index ["tour_id"], name: "index_bookings_on_tour_id"
-    t.index ["traveller_id"], name: "index_bookings_on_traveller_id"
+    t.index ["traveller_type", "traveller_id"], name: "index_bookings_on_traveller"
   end
 
   create_table "collaborates", force: :cascade do |t|
@@ -84,9 +84,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_104319) do
     t.integer "hotel_id", null: false
     t.integer "room_type"
     t.integer "no_of_rooms"
-    t.date "date"
+    t.date "check_in"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "check_out"
     t.index ["hotel_id"], name: "index_collaborates_on_hotel_id"
     t.index ["tour_id"], name: "index_collaborates_on_tour_id"
   end
@@ -96,17 +97,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_104319) do
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "organizers", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "address"
-    t.integer "phone_no"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.index ["user_id"], name: "index_organizers_on_user_id"
+    t.string "partner_type"
+    t.integer "partner_id"
+    t.index ["partner_type", "partner_id"], name: "index_hotels_on_partner"
   end
 
   create_table "tours", force: :cascade do |t|
@@ -119,25 +112,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_104319) do
     t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "organizer_id", null: false
-    t.index ["organizer_id"], name: "index_tours_on_organizer_id"
-  end
-
-  create_table "travellers", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "address"
-    t.integer "phone_no"
-    t.integer "traveller_count"
-    t.integer "paying_amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "organizer_type"
+    t.integer "organizer_id"
+    t.index ["organizer_type", "organizer_id"], name: "index_tours_on_organizer"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.integer "role"
+    t.string "type"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -149,6 +132,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_104319) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.integer "phone_no"
+    t.string "address"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -156,9 +141,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_104319) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "tours"
-  add_foreign_key "bookings", "travellers"
   add_foreign_key "collaborates", "hotels"
   add_foreign_key "collaborates", "tours"
-  add_foreign_key "organizers", "users"
-  add_foreign_key "tours", "organizers"
 end

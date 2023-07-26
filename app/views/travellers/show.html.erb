@@ -1,6 +1,6 @@
-<h2>Details of Tour <%= @tour.destination_name %> organized by <%= @tour.organizer.first_name %></h2>
+<h2>Details of Tour <%= @tour.destination_name %> organized by <%= @tour.organizer.name %></h2>
 
-<p><%= link_to 'Click here for Organizer Details',organizer_path(@tour.organizer) %></p>
+<p><%= link_to 'Click here for Organizer Details',organizer_path %></p>
 <p>Images of Tour:
 <% @tour.images.each do |image| %>
    <%= image_tag url_for(image) %>
@@ -13,4 +13,5 @@
 <p>Inclusions: <%= @tour.inclusions %></p>
 <p>Amount: <%= @tour.amount %></p>
 
-<button><%= link_to'Booked Tour'%></button>
+<button><%= link_to 'Back', travellers_path %></button>
+<button><%= link_to'Booked Tour', new_traveller_booking_path(@traveller, tour_id: @tour.id)%></button>

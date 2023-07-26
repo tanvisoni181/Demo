@@ -1,15 +1,13 @@
 class CollaboratesController < ApplicationController
 
+  before_action :set_id, only: %i[ new create show ]
+
   def index
-    # organizer_id = current_user.organizer.id 
-    # @organizer = Organizer.find(organizer_id)
      @hotel = Hotel.find(params[:hotel_id])
      @collaborates = @hotel.collaborates.all
   end
 
   def new
-    organizer_id = current_user.organizer.id 
-    @organizer = Organizer.find(organizer_id)
     @tour = @organizer.tours.find(params[:tour_id])
     @hotel = Hotel.find(params[:hotel_id])
     
@@ -17,26 +15,21 @@ class CollaboratesController < ApplicationController
   end
 
   def create
-     organizer_id = current_user.organizer.id 
-    @organizer = Organizer.find(organizer_id)
     @tour = @organizer.tours.find(params[:tour_id])
     @hotel = Hotel.find(params[:hotel_id])
      
     @collaborate = @tour.collaborates.new(set_params.merge(hotel_id:@hotel.id))
-
-    if @collaborate.save
-      
-      flash[:notice] = "Booking has been confirmed successfully."
-      redirect_to organizer_tour_hotel_collaborate_path(id: @collaborate.id)
+     respond_to do |format|
+      if @collaborate.save
+      format.html { redirect_to organizer_tour_hotel_collaborate_path(id: @collaborate.id),
+                    flash: {notice: "Booking has been confirmed successfully."} }
     else
-      render :new 
+      format.html {render action: "new" }
     end
+   end
   end
 
   def show
-    
-     organizer_id = current_user.organizer.id 
-     @organizer = Organizer.find(organizer_id)
      @tour = @organizer.tours.find_by(params[:tour_id])
 
      @hotel = Hotel.find(params[:hotel_id])
@@ -45,7 +38,12 @@ class CollaboratesController < ApplicationController
 
   private
   def set_params
-    params.require(:collaborate).permit(:no_of_rooms, :room_type,:date, :hotel_id, :tour_id)
+    params.require(:collaborate).permit(:no_of_rooms, :room_type,:check_in, :check_out)
+  end
+
+  def set_id
+    organizer_id = current_user.id 
+    @organizer = Organizer.find(organizer_id)
   end
   
 end

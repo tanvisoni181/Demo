@@ -1,0 +1,12 @@
+<h2>Booking Confirmation</h2>
+<%= flash[:notice]%>
+<div>
+<p>Booking ID: <%= @booking.id %></p>
+<p>Tour: <%= @booking.tour.destination_name %></p>
+<p>Traveller: <%= @booking.traveller_name %></p>
+<p>Email: <%= @booking.email %></p>
+<p>Number of traveller: <%= @booking.traveller_count %></p>
+<p>Advance Payment: <%= @booking.amount %></p>
+<p>Remaining Payment: <%= @booking.traveller_count * @booking.tour.amount - @booking.amount %></p>
+<div>
+<button><%= link_to 'Back', root_path %></button>	

@@ -12,9 +12,7 @@ class ToursController < ApplicationController
   end
 
   def create
-
     @tour = @organizer.tours.new(set_params)
-    @tour.images.attach(params[:images])
     respond_to do |format|
      if @tour.save
       format.html {redirect_to organizer_tour_path(id: @tour.id), flash: {notice: 'Tour is created succesfully' }  }
@@ -27,11 +25,9 @@ class ToursController < ApplicationController
 
 
   def show
-    @tour.images.attach(params[:images])
   end
 
   def edit
-     @tour.images.attach(params[:images])
   end
 
   def update
@@ -54,12 +50,11 @@ class ToursController < ApplicationController
   private
   def set_params
     params.require(:tour).permit(:destination_name,:pickup_and_dropping_point,:pickup_date,:dropping_date,
-      :inclusions,:amount,:tourable_id,:tourable_type,images: [])
+      :inclusions,:amount,images: [])
   end
 
   def find_organizer_id
-     organizer_id = current_user.organizer.id 
-     @organizer = Organizer.find(organizer_id)
+     @organizer = Organizer.find(current_user.id)
   end
 
   def find_tour_id

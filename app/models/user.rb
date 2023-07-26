@@ -1,15 +1,19 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+ 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-   
+  # validates :type, presence:true 
+  
+  self.inheritance_column = :type 
 
-   #Roles of user
-   
-   enum :role, %i{ Organizer Traveller Partner}   
-   has_one :organizer
-   # has_one :traveller  
+  def self.types
+    %w[Organizer Partner Traveller]
+  end      
+
+  validates :name ,:address, presence:true
+  validates :phone_no, length: {is:10}, presence:true
+  validates :email, uniqueness: true
+
 
 end
