@@ -88,6 +88,9 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+    ENV['STRIPE_PUBLISHABLE_KEY'] = 'pk_test_51NY6dASD4Fra99nqHAKIV6Ekta38GEohBrnWkGRso18xM6i7YuiP83YVNLlcqPQNw2RzEHaEgu49qmaTxhFaWW0u00dSb5EjzG'
+
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end

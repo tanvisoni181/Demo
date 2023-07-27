@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_26_085259) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_27_070504) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -67,14 +67,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_085259) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer "tour_id", null: false
-    t.integer "traveller_count"
-    t.integer "amount"
+    t.integer "no_of_travellers"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "traveller_type"
     t.integer "traveller_id"
     t.string "traveller_name"
     t.string "email"
+    t.string "payment_status", default: "pending", null: false
+    t.string "stripe_charge_id"
+    t.datetime "payment_date"
+    t.integer "total_amount"
     t.index ["tour_id"], name: "index_bookings_on_tour_id"
     t.index ["traveller_type", "traveller_id"], name: "index_bookings_on_traveller"
   end

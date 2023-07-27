@@ -19,7 +19,8 @@ gem 'faker', '~> 3.2'
 gem 'byebug', '~> 11.1', '>= 11.1.3'
 gem "image_processing", ">= 1.2"
 gem 'validates_timeliness', '~> 7.0.0.beta1'
-
+gem 'stripe'
+gem 'dotenv-rails', :groups => [:development, :test]
 
 
 # Use the Puma web server [https://github.com/puma/puma]

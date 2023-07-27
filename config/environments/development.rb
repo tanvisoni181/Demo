@@ -61,6 +61,11 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  
+
+  # Use your actual Stripe publishable key
+  ENV['STRIPE_PUBLISHABLE_KEY'] = 'pk_test_51NY6dASD4Fra99nqHAKIV6Ekta38GEohBrnWkGRso18xM6i7YuiP83YVNLlcqPQNw2RzEHaEgu49qmaTxhFaWW0u00dSb5EjzG'
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

@@ -1,24 +1,25 @@
 <% if user_signed_in? %> 
- <div><h2> Welcome <%= current_user.email %> </h2></div>
+ <div><h3> Welcome <%= current_user.email %> </h3></div>
 
  <%if current_user.type == "Organizer"%>
-     <div><h2><%=current_user&.type %></h2></div>
-     <h3><ul>
-       <li> <%= link_to "Organizer Details", organizer_path(current_user)%></li>
-       <li> <%= link_to "Tour Details", organizer_tours_path(current_user.id)%></li>
-       </ul></h3>
-        <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+     
+    <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %></p>
+     <ul>
+      <li> <%= link_to "Organizer Details", organizer_path(current_user)%></li>
+      <li> <%= link_to "Tour Details", organizer_tours_path(current_user.id)%></li>
+      </ul>
+        
 
 
 <% elsif current_user.type == "Traveller" %>
-     <h3> <%= link_to "see all avaliable tours",travellers_path %></h3>
-      <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+     <%#= render 'travellers/index' %>
+     <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %> </p>
+      <%= link_to "see all avaliable tours",travellers_path %> 
 
 <% elsif current_user.type == "Partner" %>
-
-     <h3> <%= link_to "Click Here for Details", partner_path(current_user.id) %></h3>
-     <h3> <%= link_to "See Registered Hotels ", info_path(current_user.id) %></h3>
-      <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+     <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %></p>
+      <p><%= link_to "Click Here for Details", partner_path(current_user.id) %></p>
+      <p><%= link_to "See Registered Hotels ", info_path(current_user.id) %></p>
 
 <% else %>
       <%= button_to "Log in", new_user_session_path %> 

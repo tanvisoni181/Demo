@@ -1,4 +1,4 @@
-<h2>New Tour created by <%= current_user.email%></h2>
+<h3>New Tour created by <%= current_user.email%></h3>
 <%= form_with model: [@organizer, @organizer.tours.build] do |f| %>
 <div>
  <% if f.object.errors.any? %>

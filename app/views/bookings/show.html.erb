@@ -1,12 +1,49 @@
-<h2>Booking Confirmation</h2>
+<!-- Booking Form -->
+<h3>Booking Confirmation</h3>
 <%= flash[:notice]%>
 <div>
 <p>Booking ID: <%= @booking.id %></p>
 <p>Tour: <%= @booking.tour.destination_name %></p>
+<p>Pickup and Dropping Point: <%= @booking.tour.pickup_and_dropping_point %></p>
+<p>Pickup Date: <%= @booking.tour.pickup_date %></p>
+<p>Dropping Date: <%= @booking.tour.dropping_date%></p>
 <p>Traveller: <%= @booking.traveller_name %></p>
 <p>Email: <%= @booking.email %></p>
-<p>Number of traveller: <%= @booking.traveller_count %></p>
-<p>Advance Payment: <%= @booking.amount %></p>
-<p>Remaining Payment: <%= @booking.traveller_count * @booking.tour.amount - @booking.amount %></p>
+<p>Number of traveller: <%= @booking.no_of_travellers %></p>
+<p>Total Amount: <%= @booking.no_of_travellers * @booking.tour.amount%></p>
 <div>
-<button><%= link_to 'Back', root_path %></button>	
+ <button><%= link_to 'Back', root_path %></button>	
+
+ 
+
+<!-- Payment Form -->
+
+<form action="<%= charge_traveller_booking_path(@traveller, @booking) %>" method="post">
+  <%= csrf_meta_tags %>
+
+  <script
+    src="https://checkout.stripe.com/checkout.js"
+    class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-amount="<%= @booking.tour.amount * @booking.no_of_travellers * 100 %>"
+    data-name="Go Travel"
+    data-description="Booking Payment"
+    data-locale="auto"
+    data-currency="inr" 
+  >
+  </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const stripe = Stripe('<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>');
+    // Your client-side code for handling Stripe Checkout...
+    Stripe.setPublishableKey('pk_test_51NY6dASD4Fra99nqHAKIV6Ekta38GEohBrnWkGRso18xM6i7YuiP83YVNLlcqPQNw2RzEHaEgu49qmaTxhFaWW0u00dSb5EjzG')
+  });
+</script>
+
+</form>
+
+
+
+
+
+

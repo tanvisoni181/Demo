@@ -1,7 +1,7 @@
 <% if user_signed_in? %> 
  <% if current_user.type == 'Organizer'%>
-<h1>Details of organizer <%= current_user.email %></h1>
-<h3>
+<h3>Details of organizer <%= current_user.email %></h3>
+
 	 <p>Name: <%= @organizer.name %></p>
    <p>Email: <%= @organizer.email %></p>
    <p> Address: <%= @organizer.address %></p>
@@ -11,18 +11,15 @@
     <button><%= link_to 'Back', root_path %></button>
 
     <button><%= link_to 'Add Tour', new_organizer_tour_path(@organizer)%></button>
-<h3>
+
      <% elsif current_user.type =='Traveller' %>
      <div>
-          <h2>Details of Organizer</h2>
-      <h3>
+          <h3>Details of Organizer</h3>
+      
        <p>First_name: <%= @organizer.name %></p>
        <p>Last name : <%= @organizer.email %></p>
        <p> Address: <%= @organizer.address %></p>
        <p>Phone no: <%= @organizer.phone_no%></p>
-     </h3>
-
-     <button><%= link_to 'Back', traveller_path(@organizer)%></button>
      </div>
 
     <% end %>

@@ -1,6 +1,6 @@
 <h2>Details of Tour <%= @tour.destination_name %> organized by <%= @tour.organizer.name %></h2>
 
-<p><%= link_to 'Click here for Organizer Details',organizer_path %></p>
+<p><%= link_to 'Click here for Organizer Details',organizer_path(@tour.organizer) %></p>
 <p>Images of Tour:
 <% @tour.images.each do |image| %>
    <%= image_tag url_for(image) %>

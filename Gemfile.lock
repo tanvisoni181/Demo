@@ -107,6 +107,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.12.0)
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
@@ -257,6 +261,7 @@ GEM
     sqlite3 (1.6.3-x86_64-linux)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    stripe (8.6.0)
     thor (1.2.2)
     tilt (2.2.0)
     timeliness (0.4.5)
@@ -299,6 +304,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9, >= 4.9.2)
+  dotenv-rails
   faker (~> 3.2)
   image_processing (>= 1.2)
   importmap-rails
@@ -310,6 +316,7 @@ DEPENDENCIES
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
+  stripe
   turbo-rails
   tzinfo-data
   validates_timeliness (~> 7.0.0.beta1)

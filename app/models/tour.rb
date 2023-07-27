@@ -1,4 +1,12 @@
 class Tour < ApplicationRecord
+
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["amount", "created_at", "destination_name", "dropping_date", "id", "images", "inclusions", "organizer_id", "organizer_type", "pickup_and_dropping_point", "pickup_date", "updated_at"]
+  end
+  def self.ransackable_associations(auth_object = nil)
+    ["bookings", "collaborates", "hotels", "images_attachments", "images_blobs", "organizer", "travellers"]
+  end
   belongs_to :organizer, polymorphic:true
   
   has_many :collaborates

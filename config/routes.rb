@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  get 'bookings/new'
-  get 'bookings/show'
-  # get 'collaborates/index'
+ 
     
-    get 'information/:id', to:'collaborates#information', as: 'information'
+    # get 'information/:id', to:'collaborates#information', as: 'information'
     get 'hotel/:id/register', to: 'hotels#register', as: 'register'
     get 'partner/:id/info', to: 'hotels#info', as: 'info'
+    # get 'travellers/:id/bookings/:id/information', to: 'bookings#information', as: 'information'
 
   
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -23,7 +22,10 @@ Rails.application.routes.draw do
     end
   end
   resources :travellers do 
-    resources :bookings
+    resources :bookings do 
+      post 'charge', on: :member
+      # get 'charge', on: :collection
+    end
   end
   # resources :hotels, only: [:new, :create, :show, :edit, :update]
    
