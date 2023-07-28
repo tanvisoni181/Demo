@@ -14,11 +14,11 @@
 <div>
  <button><%= link_to 'Back', root_path %></button>	
 
- 
+<p><%= button_to 'Pay for Tour', charges_path,params: {id: @booking.id}, remote:true %> <p>
 
-<!-- Payment Form -->
 
-<form action="<%= charge_traveller_booking_path(@traveller, @booking) %>" method="post">
+ <!-- Payment Form -->
+ <form action="<%= charge_path(traveller_id: @booking.traveller.id, tour_id: @booking.tour.id) %>" method="post">
   <%= csrf_meta_tags %>
 
   <script
@@ -38,9 +38,12 @@
     // Your client-side code for handling Stripe Checkout...
     Stripe.setPublishableKey('pk_test_51NY6dASD4Fra99nqHAKIV6Ekta38GEohBrnWkGRso18xM6i7YuiP83YVNLlcqPQNw2RzEHaEgu49qmaTxhFaWW0u00dSb5EjzG')
   });
-</script>
+</script> 
+ 
 
-</form>
+
+
+
 
 
 

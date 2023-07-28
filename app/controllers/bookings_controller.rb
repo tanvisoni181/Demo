@@ -7,15 +7,15 @@ class BookingsController < ApplicationController
   end
 
   def create
-  
+   
     @booking = @traveller.bookings.new(set_params.merge(tour_id:@tour.id))
 
 
-    respond_to do |format|
       if @booking.save
-        format.html {redirect_to traveller_booking_path(@traveller,@booking),flash: {notice: "Booking is confirmed!!!"}}
+        UserMailer.with(traveller:current_user,booking:@booking).booking_confirmation_mail.deliver
+        redirect_to traveller_booking_path(@traveller,@booking)
       else
-        format.html {render action: "new"}
+        render :new 
       end
     end
   end
@@ -51,8 +51,7 @@ class BookingsController < ApplicationController
      # redirect_to @booking
   end
 
-  def information
-  end
+
 
   private
 
@@ -64,5 +63,11 @@ class BookingsController < ApplicationController
   def set_id
     @traveller = Traveller.find(current_user.id)
     @tour = Tour.find_by(params[:tour_id])
+  end
+
+  def calculate_booking_amount(set_params)
+    @tour = Tour.find_by(params[:tour_id])
+    total_amount = @tour.amount 
+    return total_amount
   end
 end

@@ -19,14 +19,12 @@ class CollaboratesController < ApplicationController
     @hotel = Hotel.find(params[:hotel_id])
      
     @collaborate = @tour.collaborates.new(set_params.merge(hotel_id:@hotel.id))
-     respond_to do |format|
       if @collaborate.save
-      format.html { redirect_to organizer_tour_hotel_collaborate_path(id: @collaborate.id),
-                    flash: {notice: "Booking has been confirmed successfully."} }
+        UserMailer.with(partner:@hotel.partner,organizer:@tour.organizer).collaboration_confirmation_mailer.deliver
+        redirect_to organizer_tour_hotel_collaborate_path(id: @collaborate.id)
     else
-      format.html {render action: "new" }
+      render :new
     end
-   end
   end
 
   def show
