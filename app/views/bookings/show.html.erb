@@ -1,6 +1,6 @@
 <!-- Booking Form -->
 <h3>Booking Confirmation</h3>
-<%= flash[:notice]%>
+
 <div>
 <p>Booking ID: <%= @booking.id %></p>
 <p>Tour: <%= @booking.tour.destination_name %></p>
@@ -12,13 +12,11 @@
 <p>Number of traveller: <%= @booking.no_of_travellers %></p>
 <p>Total Amount: <%= @booking.no_of_travellers * @booking.tour.amount%></p>
 <div>
- <button><%= link_to 'Back', root_path %></button>	
-
-<p><%= button_to 'Pay for Tour', charges_path,params: {id: @booking.id}, remote:true %> <p>
+<button><%= link_to 'Back', root_path %></button>	
 
 
  <!-- Payment Form -->
- <form action="<%= charge_path(traveller_id: @booking.traveller.id, tour_id: @booking.tour.id) %>" method="post">
+ <form action="<%= payment_path(traveller_id: @booking.traveller.id, tour_id: @booking.tour.id) %>" method="post">
   <%= csrf_meta_tags %>
 
   <script
@@ -29,7 +27,7 @@
     data-name="Go Travel"
     data-description="Booking Payment"
     data-locale="auto"
-    data-currency="inr" 
+    data-currency="usd" 
   >
   </script>
   <script>

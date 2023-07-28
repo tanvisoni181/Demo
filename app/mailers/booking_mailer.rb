@@ -1,5 +1,0 @@
-class BookingMailer < ApplicationMailer
-
-
-	
-end

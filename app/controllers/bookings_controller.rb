@@ -1,6 +1,10 @@
 class BookingsController < ApplicationController
-   before_action :set_id, only: %i[ new create show  ]
+   before_action :set_id, only: %i[ new  show  ]
 
+   def index 
+    @traveller = Traveller.find(current_user.id)
+    @bookings = @traveller.bookings.all
+   end
 
   def new
     @booking = @traveller.bookings.new(tour_id:@tour.id)
@@ -8,16 +12,16 @@ class BookingsController < ApplicationController
 
   def create
    
-    @booking = @traveller.bookings.new(set_params.merge(tour_id:@tour.id))
+    @traveller = Traveller.find(current_user.id)
+    @booking = @traveller.bookings.new(set_params)
 
 
       if @booking.save
-        UserMailer.with(traveller:current_user,booking:@booking).booking_confirmation_mail.deliver
+        UserMailer.with(traveller:@traveller,booking:@booking).booking_confirmation_mailer.deliver
         redirect_to traveller_booking_path(@traveller,@booking)
       else
         render :new 
       end
-    end
   end
 
   def show
@@ -62,7 +66,7 @@ class BookingsController < ApplicationController
 
   def set_id
     @traveller = Traveller.find(current_user.id)
-    @tour = Tour.find_by(params[:tour_id])
+    @tour = Tour.find_by(id: params[:tour_id])
   end
 
   def calculate_booking_amount(set_params)

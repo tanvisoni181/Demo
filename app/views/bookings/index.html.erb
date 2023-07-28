@@ -1,0 +1,20 @@
+<h2>List of Confirmed Bookings </h2>
+<table>
+	<thead>
+		<th>Tour Id</th>
+		<th>Tour Name</th>
+		<th>Pickup Date</th>
+		<th>Dropping Date</th>
+	</thead>
+	<tbody>
+		<% @bookings.each do |booking| %>
+		<tr>
+			<td><%= booking.tour_id %></td>
+			<td><%= booking.tour.destination_name %></td>
+			<td><%= booking.tour.pickup_date%></td>
+			<td><%= booking.tour.dropping_date %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<button><%= link_to 'Back', root_path %></button>

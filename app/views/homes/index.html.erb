@@ -14,7 +14,9 @@
 <% elsif current_user.type == "Traveller" %>
      <%#= render 'travellers/index' %>
      <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %> </p>
-      <%= link_to "see all avaliable tours",travellers_path %> 
+     <ul>
+      <li><%= link_to "see all avaliable tours",travellers_path %></li>
+      <li><%= link_to 'see Booked Tours', traveller_bookings_path(current_user.id)%></li></ul>
 
 <% elsif current_user.type == "Partner" %>
      <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %></p>
