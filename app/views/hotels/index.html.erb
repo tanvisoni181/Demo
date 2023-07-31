@@ -8,11 +8,11 @@
 	<tbody>
 		<% @hotels.each do |hotel| %>
 		<tr>
-			
 			<td><%= hotel.hotel_name%></td>
 			<td><%= hotel.city %></td>
 			<td><%= link_to 'Book here', new_organizer_tour_hotel_collaborate_path(hotel_id: hotel.id) %></td>
        <% end %>
+       <%= paginate @hotels %>
        </tr>
 </tbody>
 </table>

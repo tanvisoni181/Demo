@@ -3,7 +3,12 @@ class HotelsController < ApplicationController
      before_action :find_hotel_id, only: %i[ show update register destroy ]
 
 	def index 
-		@hotels = Hotel.all
+		# @hotels = Hotel.all
+		@hotels = Hotel.order(created_at: :desc).page(params[:page]).per(3)
+    respond_to do |format|
+        format.html  
+      end
+
 	end
 
 	def new

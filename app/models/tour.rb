@@ -1,5 +1,5 @@
 class Tour < ApplicationRecord
-
+  paginates_per 10
   belongs_to :organizer, polymorphic:true
   
   has_many :collaborates, dependent: :destroy

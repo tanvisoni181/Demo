@@ -22,6 +22,7 @@ gem 'validates_timeliness', '~> 7.0.0.beta1'
 gem 'stripe'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'date_validator', '~> 0.12.0'
+gem 'kaminari'
 
 
 # Use the Puma web server [https://github.com/puma/puma]

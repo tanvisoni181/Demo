@@ -1,4 +1,12 @@
 <h3>Booking Form</h3>
+<div>
+ <% if @booking.errors.any? %>
+  <% @booking.errors.full_messages.each do |msg| %>
+    <p> <%= msg %></p>
+  <% end %>
+ <% end %> 
+ 
+</div>
 <%= form_with model: [@traveller, @traveller.bookings.build] do |f| %>
   
   <%= f.hidden_field :tour_id, value: @tour.id%>

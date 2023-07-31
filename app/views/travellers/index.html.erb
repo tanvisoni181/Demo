@@ -28,7 +28,6 @@
 </head>
 <body>
   <h2>All Tour List</h2>
-
   <% @tours.each do |tour| %>
     <div class="">
        <% tour.images.each do |image| %>
@@ -40,5 +39,6 @@
       </div>
     </div>
   <% end %>
+ <center> <%= paginate @tours %></center>
 </body>
 </html>
