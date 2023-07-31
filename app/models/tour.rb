@@ -1,37 +1,32 @@
 class Tour < ApplicationRecord
 
-
-  def self.ransackable_attributes(auth_object = nil)
-    ["amount", "created_at", "destination_name", "dropping_date", "id", "images", "inclusions", "organizer_id", "organizer_type", "pickup_and_dropping_point", "pickup_date", "updated_at"]
-  end
-  def self.ransackable_associations(auth_object = nil)
-    ["bookings", "collaborates", "hotels", "images_attachments", "images_blobs", "organizer", "travellers"]
-  end
   belongs_to :organizer, polymorphic:true
   
-  has_many :collaborates
+  has_many :collaborates, dependent: :destroy
   has_many :hotels, through: :collaborates
 
 	has_many_attached :images
   
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
   has_many :travellers, through: :bookings
-
-  validate :pickup_date_cannot_be_in_the_past
-  validate :dropping_date_cannot_be_in_the_past
-  validates :destination_name, :pickup_and_dropping_point, :pickup_date, :dropping_date, :amount, :inclusions, presence:true
-
+  
+  validate  :pickup_and_dropping_date_cannot_be_in_the_past
+  validates :destination_name, presence: true
+  validates :pickup_and_dropping_point, presence: true 
+  validates :amount, presence: true
+  validates :inclusions, presence:true
+  validates :pickup_date, presence: true
+  validates :dropping_date, presence:true
 
   private
-  def pickup_date_cannot_be_in_the_past
+
+  def pickup_and_dropping_date_cannot_be_in_the_past
     if pickup_date.present? && pickup_date < Date.today
       errors.add(:pickup_date, "can't be in the past")
     end
-  end 
-
-  def dropping_date_cannot_be_in_the_past
     if dropping_date.present? && dropping_date < Date.today
       errors.add(:dropping_date, "can't be in the past")
     end
   end 
+
 end

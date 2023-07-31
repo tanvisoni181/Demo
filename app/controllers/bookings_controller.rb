@@ -1,9 +1,10 @@
 class BookingsController < ApplicationController
+  
    before_action :set_id, only: %i[ new  show  ]
+   before_action :find_traveller, only: %i[ index create ]
 
    def index 
-    @traveller = Traveller.find(current_user.id)
-    @bookings = @traveller.bookings.all
+    @bookings = @traveller.bookings
    end
 
   def new
@@ -11,8 +12,6 @@ class BookingsController < ApplicationController
   end
 
   def create
-   
-    @traveller = Traveller.find(current_user.id)
     @booking = @traveller.bookings.new(set_params)
 
 
@@ -28,34 +27,6 @@ class BookingsController < ApplicationController
     @booking = @traveller.bookings.find(params[:id])
   end
 
-  def charge
-    
-     # @traveller = Traveller.find(current_user.id)
-     # @booking = @traveller.bookings.find(params[:id])
-     # @amount = @booking.tour.amount
-
-     # # Create the charge using Stripe API
-     # # charge = Stripe::Charge.create(
-     # #  booking: @booking.id
-     # #  amount: @amount, 
-     # #  currency: 'inr',
-     # #  # source: params[:stripe_token] 
-     # #  )
-
-     # @booking.update(
-     #  payment_status: 'paid',
-     #  total_amount: @amount,
-     #  payment_date: Time.now,
-     #  # stripe_charge_id: charge.id 
-     #  )
-
-     # redirect_to information_path , notice:'Booking and Payment were successfull.'
-     # resue Stripe::CardError => e 
-     # flash[:error] = e.message
-     # redirect_to @booking
-  end
-
-
 
   private
 
@@ -69,9 +40,8 @@ class BookingsController < ApplicationController
     @tour = Tour.find_by(id: params[:tour_id])
   end
 
-  def calculate_booking_amount(set_params)
-    @tour = Tour.find_by(params[:tour_id])
-    total_amount = @tour.amount 
-    return total_amount
+  def find_traveller
+    @traveller = Traveller.find(current_user.id)
   end
+
 end

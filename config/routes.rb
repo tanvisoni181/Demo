@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
  
-    get 'hotel/:id/register', to: 'hotels#register', as: 'register'
-    get 'partner/:id/info', to: 'hotels#info', as: 'info'
+  get 'partner/:id/hotel/:id/register', to: 'hotels#register', as: 'register'
+  get 'partner/:id/info', to: 'hotels#info', as: 'info'
+  get 'organizer/:id/tours/:id', to: 'tours#destroy', as: 'destroy_tour'
+  get 'partner/:id/info/:id', to: 'hotels#destroy', as: 'destroy_hotel'
+  get 'bookings/:id/payments/new', to: 'payments#new', as: 'new_payment'
+  post 'bookings/:id/payments/create', to: 'payments#create', as: 'create_payment'
+  get 'booking/:id/payments/require_action', to: 'payments#require_action', as: 'secure'
+  get 'payments/status', to: 'payments#get_payment_intent_status', as: 'status'
     
    
   
@@ -19,12 +25,11 @@ Rails.application.routes.draw do
       end
     end
   end
-   resources :payments do 
-    post 'create', on: :member
-    get  'show', on: :collection
-   end
+   resources :payments , only: [:show]
+   
   resources :travellers do 
     resources :bookings
+    post 'create_payment', on: :member
   end
  
    

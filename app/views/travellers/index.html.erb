@@ -30,7 +30,7 @@
   <h2>All Tour List</h2>
 
   <% @tours.each do |tour| %>
-    <div class="image-container">
+    <div class="">
        <% tour.images.each do |image| %>
        <%= image_tag url_for(image) %>
        <% end %>

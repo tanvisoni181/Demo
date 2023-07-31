@@ -1,5 +1,5 @@
 <h3>Details of Tour <%= @tour.destination_name%></h3>
-<%= flash[:notice]%> 
+<span style="background-color: orange;"><%= flash[:notice]%></span>
 <p>Images of Tour:
 <% @tour.images.each do |image| %>
    <%= image_tag url_for(image) %>
@@ -15,7 +15,7 @@
 <div>
    <p>Booked Hotels:
    <% @tour.hotels.each do |hotel|%>
-     <%= link_to hotel.hotel_name%>,  
+     <%= hotel.hotel_name%>,  
       <% end %>
 
       <button><%= link_to 'Select Hotels', organizer_tour_hotels_path(organizer_id:@tour.organizer.id, tour_id: @tour.id) %></button> 

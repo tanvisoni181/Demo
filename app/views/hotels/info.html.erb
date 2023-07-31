@@ -10,7 +10,7 @@
  		<tr> 
  			<td><%= hotel.hotel_name %></td>
  			<td><%= hotel.city %></td>
- 			<td><%= link_to 'Remove', [hotel.partner, hotel], data: {turbo_method: :delete, turbo_confirm: 'Are you sure? '} %></td>
+ 			<td><%= link_to 'Remove',destroy_hotel_path(hotel), method: :delete, data: { confirm:'Are you sure? '} %></td>
  		</tr>
  		<% end %>
  	</tbody>

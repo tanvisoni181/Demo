@@ -1,5 +1,6 @@
 class HotelsController < ApplicationController
-     before_action :set_partner, only: [ :new, :create, :destroy, :info]
+     before_action :set_partner, only: [ :new, :create,:show, :update, :register, :destroy, :info, :edit]
+     before_action :find_hotel_id, only: %i[ show update register destroy ]
 
 	def index 
 		@hotels = Hotel.all
@@ -19,16 +20,13 @@ class HotelsController < ApplicationController
 	end
 
 	def show
-		@hotel = Hotel.find(params[:id])
 	end
 
 	def edit
-		@partner = Partner.find(current_user.id)
 		@hotel = @partner.hotels.find(params[:id])
 	end
 
 	def update
-		@hotel = Hotel.find(params[:id])
 		if @hotel.update(set_params)
 			redirect_to partner_hotel_path(@hotel)
 		else
@@ -37,11 +35,9 @@ class HotelsController < ApplicationController
 	end
 
 	def register
-		@hotel = Hotel.find(params[:id])
 	end
 
 	def destroy
-		@hotel = @partner.hotels.find(params[:id])
 		@hotel.destroy 
 
 		redirect_to info_path
@@ -49,11 +45,14 @@ class HotelsController < ApplicationController
 	end
 
 	def info
-		@hotels = @partner.hotels.all
+		@hotels = @partner.hotels
 	end
 
 	private
 
+	def find_hotel_id
+		@hotel = @partner.hotels.find(params[:id])
+	end
 	def set_partner
 		@partner = Partner.find(current_user.id)
 	end

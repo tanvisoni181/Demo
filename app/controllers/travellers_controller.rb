@@ -8,5 +8,4 @@ class TravellersController < ApplicationController
     @tour = Tour.find(params[:id])
   end
 
-
 end

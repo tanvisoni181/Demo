@@ -3,7 +3,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # validates :type, presence:true 
   
   self.inheritance_column = :type 
 

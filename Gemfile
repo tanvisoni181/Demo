@@ -21,6 +21,7 @@ gem "image_processing", ">= 1.2"
 gem 'validates_timeliness', '~> 7.0.0.beta1'
 gem 'stripe'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'date_validator', '~> 0.12.0'
 
 
 # Use the Puma web server [https://github.com/puma/puma]

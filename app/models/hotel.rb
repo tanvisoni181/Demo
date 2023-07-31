@@ -8,7 +8,7 @@ class Hotel < ApplicationRecord
    end
 
     belongs_to :partner, polymorphic:true
-    has_many :collaborates
+    has_many :collaborates, dependent: :destroy
     has_many :tours, through: :collaborates
     
     validates :hotel_name, :city, presence:true 

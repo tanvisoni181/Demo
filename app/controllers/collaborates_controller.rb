@@ -1,23 +1,17 @@
 class CollaboratesController < ApplicationController
 
-  before_action :set_id, only: %i[ new create show ]
+  before_action :organizer_id, only: %i[ new create show ]
+  before_action :hotel_id, only: %i[ index new create show ]
 
   def index
-     @hotel = Hotel.find(params[:hotel_id])
-     @collaborates = @hotel.collaborates.all
+     @collaborates = @hotel.collaborates
   end
 
   def new
-    @tour = @organizer.tours.find(params[:tour_id])
-    @hotel = Hotel.find(params[:hotel_id])
-    
     @collaborate = @tour.collaborates.new(hotel_id:@hotel.id)
   end
 
   def create
-    @tour = @organizer.tours.find(params[:tour_id])
-    @hotel = Hotel.find(params[:hotel_id])
-     
     @collaborate = @tour.collaborates.new(set_params.merge(hotel_id:@hotel.id))
       if @collaborate.save
         UserMailer.with(partner:@hotel.partner,organizer:@tour.organizer).collaboration_confirmation_mailer.deliver
@@ -28,9 +22,6 @@ class CollaboratesController < ApplicationController
   end
 
   def show
-     @tour = @organizer.tours.find_by(params[:tour_id])
-
-     @hotel = Hotel.find(params[:hotel_id])
      @collaborate = @hotel.collaborates.find(params[:id])
   end
 
@@ -39,9 +30,12 @@ class CollaboratesController < ApplicationController
     params.require(:collaborate).permit(:no_of_rooms, :room_type,:check_in, :check_out)
   end
 
-  def set_id
-    organizer_id = current_user.id 
-    @organizer = Organizer.find(organizer_id)
+  def organizer_id
+    @organizer = Organizer.find(current_user.id)
+    @tour = @organizer.tours.find(params[:tour_id])
   end
   
+  def hotel_id
+    @hotel = Hotel.find(params[:hotel_id])
+  end
 end

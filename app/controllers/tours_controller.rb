@@ -4,7 +4,7 @@ class ToursController < ApplicationController
    before_action :find_tour_id, only: %i[ show edit update destroy ] 
 
   def index
-    @tours = @organizer.tours.all
+    @tours = @organizer.tours
   end
 
   def new 
@@ -25,6 +25,7 @@ class ToursController < ApplicationController
 
 
   def show
+
   end
 
   def edit
@@ -41,13 +42,18 @@ class ToursController < ApplicationController
   end
 
   def destroy
-    @tour.collaborates.destroy_all
+    @tour.collaborates.delete_all
     @tour.destroy
 
-    redirect_to organizer_tours_path
+    redirect_to organizer_tours_path(@organizer)
   end
 
   private
+  
+  def find_tour_id
+    @tour = @organizer.tours.find(params[:id])
+  end
+
   def set_params
     params.require(:tour).permit(:destination_name,:pickup_and_dropping_point,:pickup_date,:dropping_date,
       :inclusions,:amount,images: [])
@@ -57,8 +63,5 @@ class ToursController < ApplicationController
      @organizer = Organizer.find(current_user.id)
   end
 
-  def find_tour_id
-    @tour = @organizer.tours.find(params[:id])
-  end
 
 end

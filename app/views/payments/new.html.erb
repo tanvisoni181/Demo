@@ -1,0 +1,22 @@
+<!-- Payment Form -->
+ <form action="<%= create_payment_path(traveller_id: @booking.traveller.id, tour_id: @booking.tour.id) %>" method="post">
+  <%= csrf_meta_tags %>
+
+  <script
+    src="https://checkout.stripe.com/checkout.js"
+    class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-amount="<%= @booking.tour.amount * @booking.no_of_travellers * 100 %>"
+    data-name="Go Travel"
+    data-description="Booking Payment"
+    data-locale="auto"
+    data-currency="INR" 
+  >
+  </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const stripe = Stripe('<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>');
+    // Your client-side code for handling Stripe Checkout...
+    Stripe.setPublishableKey('pk_test_51NY6dASD4Fra99nqHAKIV6Ekta38GEohBrnWkGRso18xM6i7YuiP83YVNLlcqPQNw2RzEHaEgu49qmaTxhFaWW0u00dSb5EjzG')
+  });
+</script> 
