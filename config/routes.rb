@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   get 'organizer/:id/tours/:id', to: 'tours#destroy', as: 'destroy_tour'
   get 'partner/:id/info/:id', to: 'hotels#destroy', as: 'destroy_hotel'
   get 'bookings/:id/payments/new', to: 'payments#new', as: 'new_payment'
-  post 'bookings/:id/payments/create', to: 'payments#create', as: 'create_payment'
-  get 'booking/:id/payments/require_action', to: 'payments#require_action', as: 'secure'
-  get 'payments/status', to: 'payments#get_payment_intent_status', as: 'status'
-    
+  # post 'bookings/:id/payments/create', to: 'payments#create', as: 'create_payment'
+  # get 'booking/:id/payments/require_action', to: 'payments#require_action', as: 'secure'
+  # get 'payments/status', to: 'payments#get_payment_intent_status', as: 'status'
+
    
   
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -31,6 +31,9 @@ Rails.application.routes.draw do
     resources :bookings
     post 'create_payment', on: :member
   end
+
+  resources :messages
+
  
    
   devise_for :users
