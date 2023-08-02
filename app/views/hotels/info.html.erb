@@ -1,18 +1,34 @@
-<h3>List of hotel registered by <%= current_user.email%></h3>
- <table>
- 	<thead>
- 		<th>Hotel Name</th>
- 		<th>City</th>
- 		<th>Action</th>
- 	</thead>
- 	<tbody>
- 		<% @partner.hotels.each do |hotel|%>
- 		<tr> 
- 			<td><%= hotel.hotel_name %></td>
- 			<td><%= hotel.city %></td>
- 			<td><%= link_to 'Remove',destroy_hotel_path(hotel), method: :delete, data: { confirm:'Are you sure? '} %></td>
- 		</tr>
- 		<% end %>
- 	</tbody>
- </table>
- <button><%= link_to 'Back', root_path %></button>
+<div class="container mt-5">
+  <h3>List of hotels registered by <%= current_user.email %></h3>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Hotel Name</th>
+        <th>City</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @partner.hotels.empty? %>
+        <tr>
+          <td colspan="3" class="text-center">
+            <%= link_to 'Register Hotel Here', new_partner_hotel_path(@partner), class: "btn btn-primary" %>
+          </td>
+        </tr>
+      <% else %>
+        <% @partner.hotels.each do |hotel| %>
+          <tr>
+            <td><%= hotel.hotel_name %></td>
+            <td><%= hotel.city %></td>
+            <td>
+              <%= link_to 'Remove', destroy_hotel_path(hotel), method: :delete, data: { confirm: 'Are you sure? ' }, class: "btn", style: "text-decoration:none;" %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="btn-group d-flex justify-content-between">
+   <%= link_to 'Back', root_path,class: 'btn btn-danger nav-link'%>
+ </div>
+</div>

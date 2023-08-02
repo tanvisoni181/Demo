@@ -1,44 +1,57 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Show Images</title>
-  <style>
-    /* Basic styles for layout and image containers */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
+<div class="container mt-4">
+  <!-- Heading -->
+  <h2 class="text-center">All Tour List</h2>
 
-    .image-container {
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin: 10px;
-      max-width: 400px;
-    }
+  <!-- Tour cards -->
+  <div class="row">
+    <% @tours.each do |tour| %>
+      <div class="col-md-4 mb-4">
+        <!-- Individual tour container -->
+        <div class="card tour-container">
+          <!-- Iterate through images -->
+          <div id="carouselExampleControls<%= tour.id %>" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <% tour.images.each_with_index do |image, index| %>
+                <div class="carousel-item <%= 'active' if index == 0 %>">
+                  <%= image_tag url_for(image), class: "d-block w-100 tour-image" %>
+                </div>
+              <% end %>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls<%= tour.id %>" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls<%= tour.id %>" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
 
-    .image {
-      max-width: 100%;
-      height: auto;
-    }
-
-    .description {
-      margin-top: 10px;
-    }
-  </style>
-</head>
-<body>
-  <h2>All Tour List</h2>
-  <% @tours.each do |tour| %>
-    <div class="">
-       <% tour.images.each do |image| %>
-       <%= image_tag url_for(image) %>
-       <% end %>
-
-      <div class="description">
-        <p>Destination Name: <%= tour.destination_name %> [ <%= link_to 'Click for more details', traveller_path(tour)%> ] </p>
+          <!-- Tour description -->
+          <div class="card-body">
+            <h5 class="card-title">Destination: <%= tour.destination_name %></h5>
+            <%= link_to 'Click for more details', traveller_path(tour), class: 'btn btn-danger btn-sm w-100 mt-2' %>
+          </div>
+        </div>
       </div>
-    </div>
-  <% end %>
- <center> <%= paginate @tours %></center>
-</body>
-</html>
+    <% end %>
+  </div>
+
+  <!-- Centered pagination links -->
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @tours, class: 'pagination' %>
+  </div>
+</div>
+
+<style>
+  /* Fixed height for carousel container */
+  .carousel-inner {
+    height: 250px; /* Adjust the height as needed */
+  }
+
+  /* Fixed height for carousel images */
+  .tour-image {
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

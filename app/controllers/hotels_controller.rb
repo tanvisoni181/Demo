@@ -1,6 +1,6 @@
 class HotelsController < ApplicationController
-     before_action :set_partner, only: [ :new, :create,:show, :update, :register, :destroy, :info, :edit]
-     before_action :find_hotel_id, only: %i[ show update register destroy ]
+     before_action :find_partner, except: [:index]
+     before_action :find_hotel, only: %i[ show update register destroy edit]
 
 	def index 
 		# @hotels = Hotel.all
@@ -17,36 +17,32 @@ class HotelsController < ApplicationController
 
 	def create
 		@hotel = @partner.hotels.build(set_params)
+
 		if @hotel.save
-			redirect_to partner_hotel_path(@partner,@hotel), notice: "Hotel Registered Successfully."
+			redirect_to partner_hotel_path(@partner, @hotel), notice: "Congratulations!!! #{@hotel.hotel_name} is Registered Successfully."
 		else
 			render :new
 		end
 	end
 
-	def show
-	end
+	def show; end
 
-	def edit
-		@hotel = @partner.hotels.find(params[:id])
-	end
+	def edit; end
 
 	def update
 		if @hotel.update(set_params)
-			redirect_to partner_hotel_path(@hotel)
+			redirect_to partner_hotel_path(@hotel), notice: "Hotel #{@hotel.hotel_name} Updated Successfully."
 		else
 			render :edit 
 		end
 	end
 
-	def register
-	end
+	def register; end
 
 	def destroy
 		@hotel.destroy 
 
 		redirect_to info_path
-
 	end
 
 	def info
@@ -55,12 +51,14 @@ class HotelsController < ApplicationController
 
 	private
 
-	def find_hotel_id
+	def find_hotel
 		@hotel = @partner.hotels.find(params[:id])
 	end
-	def set_partner
+
+	def find_partner
 		@partner = Partner.find(current_user.id)
 	end
+
 	def set_params
 		params.require(:hotel).permit(:hotel_name, :city)
 	end

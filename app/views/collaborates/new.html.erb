@@ -1,31 +1,38 @@
-<h3>Details for booking</h3>
+<div class="container mt-5">
+  <h3>Details for booking</h3>
 
-<% if @collaborate.errors.any? %>
-  <% @collaborate.errors.full_messages.each do |msg| %>
-      <p><%= msg %></p>
-     <% end %>
-  <% end %>  
+  <% if @collaborate.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <% @collaborate.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
 
-<%= form_with model: [@organizer, @tour, @collaborate], url: organizer_tour_hotel_collaborates_path(@organizer, @tour, @hotel) do |f| %>
-<div>
-	<%= f.label :no_of_rooms %>
-	<%= f.number_field :no_of_rooms %>
+  <%= form_with model: [@organizer, @tour, @collaborate], url: organizer_tour_hotel_collaborates_path(@organizer, @tour, @hotel) do |f| %>
+    <div class="form-group">
+      <%= f.label :no_of_rooms %>
+      <%= f.number_field :no_of_rooms, class: "form-control" %>
+    </div>
+
+    <%= f.hidden_field :tour_id %>
+
+    <div class="form-group">
+      <%= f.label :room_type %>
+      <%= f.select :room_type, Collaborate.room_types.keys.map { |room_type| [room_type.humanize, room_type] }, {}, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :check_in %>
+      <%= f.date_field :check_in, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :check_out %>
+      <%= f.date_field :check_out, class: "form-control" %>
+    </div>
+     <div class="btn-group d-flex justify-content-between">
+      <%= f.submit "Confirm Booking",class: 'btn btn-danger nav-link' %>
+    </div>
+  <% end %>
 </div>
-<%= f.hidden_field :tour_id %>
-<br>
-<div>
-	<%= f.label :room_type %>
-	<%= f.select :room_type, Collaborate.room_types.keys.map{|room_type| [room_type.humanize,room_type]}%>
-</div>
-<br>
-<div>
-	<%= f.label :check_in%>
-	<%= f.date_field :check_in%>
-</div>
-<br>
-<div>
-	<%= f.label :check_out%>
-	<%= f.date_field :check_out%>
-</div>
-<div><%= f.submit 'Booking Comfirmation'%></div>
-<% end %>

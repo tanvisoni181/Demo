@@ -1,7 +1,19 @@
-<h3>Details of <%=current_user.email%></h3>
-<p>Name: <%= @partner.name %></p>
-<p>Email: <%= @partner.email %></p>
-<p>Address: <%= @partner.address %></p>
-<p>Phone Number: <%= @partner.phone_no %></p>
+<div class="container text-center">
+  <div class="form-detail mt-5">
+    <div class="form-body">
+      <h3 class="form-title">Details of <%=current_user.email%></h3>
 
-<button><%= link_to 'Register your Hotel', new_partner_hotel_path(@partner)%></button>
+      <div class="form-content">
+        <p><strong>Name:</strong> <%= @partner.name %></p>
+        <p><strong>Email:</strong> <%= @partner.email %></p>
+        <p><strong>Address:</strong> <%= @partner.address %></p>
+        <p><strong>Phone Number:</strong> <%= @partner.phone_no %></p>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary"><%= link_to 'Register your Hotel', new_partner_hotel_path(@partner) %></button>
+      </div>
+    </div>
+  </div>
+</div>
+

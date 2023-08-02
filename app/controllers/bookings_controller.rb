@@ -1,14 +1,14 @@
 class BookingsController < ApplicationController
   
-   before_action :set_id, only: %i[ new  show  ]
-   before_action :find_traveller, only: %i[ index create ]
+  before_action :find_tour, only: %i[new  show index create]
+  before_action :find_traveller, only: %i[index create new show ]
 
-   def index 
+  def index 
     @bookings = @traveller.bookings
-   end
+  end
 
   def new
-    @booking = @traveller.bookings.new(tour_id:@tour.id)
+    @booking = @traveller.bookings.new(tour_id: @tour.id)
   end
 
   def create
@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
 
 
       if @booking.save
-        UserMailer.with(traveller:@traveller,booking:@booking).booking_confirmation_mailer.deliver
+        UserMailer.with(traveller: @traveller,booking: @booking).booking_confirmation.deliver
         redirect_to traveller_booking_path(@traveller,@booking)
       else
         render :new 
@@ -31,12 +31,10 @@ class BookingsController < ApplicationController
   private
 
   def set_params
-    params.require(:booking).permit(:no_of_travellers, :tour_id,
-      :traveller_id,:traveller_name,:email,:total_amount,:payment_date,:stripe_charge_id, :payment_status)
+    params.require(:booking).permit(:no_of_travellers, :tour_id, :traveller_name, :email, :total_amount, :payment_date, :stripe_charge_id, :payment_status)
   end
 
-  def set_id
-    @traveller = Traveller.find(current_user.id)
+  def find_tour
     @tour = Tour.find_by(id: params[:tour_id])
   end
 

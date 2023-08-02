@@ -1,26 +1,41 @@
-<h3>Details of Tour <%= @tour.destination_name%></h3>
-<span style="background-color: orange;"><%= flash[:notice]%></span>
-<p>Images of Tour:
-<% @tour.images.each do |image| %>
-   <%= image_tag url_for(image) %>
-<% end %>
-</p>
-<p>Destination Name: <%= @tour.destination_name %></p>
-<p>Pick up / Dropping Point: <%= @tour.pickup_and_dropping_point %></p>
-<p>Pick up Date: <%= @tour.pickup_date %></p>
-<p>Dropping Date: <%= @tour.dropping_date %></p>
-<p>Inclusions: <%= @tour.inclusions %></p>
-<p>Amount: <%= @tour.amount %></p>
-
-<div>
-   <p>Booked Hotels:
-   <% @tour.hotels.each do |hotel|%>
-     <%= hotel.hotel_name%>,  
+<div class="container mt-5">
+  <div class="d-flex justify-content-center"> <!-- Center the form -->
+    <div>
+      <h3>Details of Tour <%= @tour.destination_name %></h3>
+      <% if flash[:notice].present? %>
+        <div class="alert alert-info" role="alert">
+          <%= flash[:notice] %>
+        </div>
       <% end %>
 
-      <button><%= link_to 'Select Hotels', organizer_tour_hotels_path(organizer_id:@tour.organizer.id, tour_id: @tour.id) %></button> 
-   </p>
+      <div class="mt-3">
+        <p>Images of Tour:</p>
+        <div class="row">
+          <% @tour.images.each do |image| %>
+            <div class="col-md-3">
+              <%= image_tag url_for(image), class: "img-thumbnail img-fluid" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <p>Destination Name: <%= @tour.destination_name %></p>
+        <p>Pick up / Dropping Point: <%= @tour.pickup_and_dropping_point %></p>
+        <p>Pick up Date: <%= @tour.pickup_date %></p>
+        <p>Dropping Date: <%= @tour.dropping_date %></p>
+        <p>Inclusions: <%= @tour.inclusions %></p>
+        <p>Amount: <%= @tour.amount %></p>
+      </div>
+
+      <div class="mt-3">
+        <p>Booked Hotels: <%= @tour.hotels.map(&:hotel_name).join(', ') %></p>
+       <%= link_to 'Select Hotels', organizer_tour_hotels_path(organizer_id: @tour.organizer.id, tour_id: @tour.id),class: 'btn btn-danger nav-link' %>
+      </div>
+
+      <div class="mt-3">
+        <%= link_to 'Back', organizer_tours_path,class: 'btn btn-danger nav-link' %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<button><%= link_to 'Back', organizer_tours_path %></button>
-

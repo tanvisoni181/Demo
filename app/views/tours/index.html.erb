@@ -1,21 +1,29 @@
-<h3>List of Tours organized by <%= current_user.email %></h3>
 
-<table>
-	<thead>
-		<th>Destination Name</th>
-		<th>Tour Detail</th>
-		<th>Edit Tour</th>
-		<th>Delete Tour</th>
-	</thead>
-	<tbody>
-		<% @organizer.tours.each do |tour| %>
-		<tr>
-			<td><%= tour.destination_name %></td>
-			<td><%= link_to 'Show', organizer_tour_path(id: tour.id)%></td>
-			<td><%= link_to 'Edit', edit_organizer_tour_path(id: tour.id) %></td>
-			<td><%= link_to 'Delete', destroy_tour_path(tour.organizer, tour), turbo_method: :delete, data:{confirm:'Are you sure?'} %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
-<button><%= link_to 'Back', root_path %></button>
+<div class="container mt-5">
+  <h3>List of Tours organized by <%= current_user.email %></h3>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Destination Name</th>
+        <th>Tour Detail</th>
+        <th>Edit Tour</th>
+        <th>Delete Tour</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @organizer.tours.each do |tour| %>
+      <tr>
+        <td><%= tour.destination_name %></td>
+        <td><%= link_to 'Show', organizer_tour_path(id: tour.id) %></td>
+        <td><%= link_to 'Edit', edit_organizer_tour_path(id: tour.id) %></td>
+        <td><%= link_to 'Delete', destroy_tour_path(tour.organizer, tour), turbo_method: :delete, data:{confirm:'Are you sure?'} %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+   <div class="btn-group d-flex justify-content-between">
+   <%= link_to 'Back', root_path, class: 'btn btn-danger nav-link'%>
+   </div>
+</div>
+

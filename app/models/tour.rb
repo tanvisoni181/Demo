@@ -1,4 +1,5 @@
 class Tour < ApplicationRecord
+
   paginates_per 10
   belongs_to :organizer, polymorphic:true
   
@@ -10,7 +11,7 @@ class Tour < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :travellers, through: :bookings
   
-  validate  :pickup_and_dropping_date_cannot_be_in_the_past
+  validate  :validate_pickup_and_dropping_date
   validates :destination_name, presence: true
   validates :pickup_and_dropping_point, presence: true 
   validates :amount, presence: true
@@ -20,7 +21,7 @@ class Tour < ApplicationRecord
 
   private
 
-  def pickup_and_dropping_date_cannot_be_in_the_past
+  def validate_pickup_and_dropping_date
     if pickup_date.present? && pickup_date < Date.today
       errors.add(:pickup_date, "can't be in the past")
     end

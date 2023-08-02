@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
 		mail(to: @user.email, subject: 'Welcome to GoTravel')
 	end
 
-	def booking_confirmation_mailer
+	def booking_confirmation
 		@organizer = params[:organizer]
 		@traveller = params[:traveller]
 		@booking = params[:booking]
@@ -16,7 +16,7 @@ class UserMailer < ApplicationMailer
 		# mail(to: @organizer.email, subject: "Booking confirmation for your Tour") 
 	end
 
-	def collaboration_confirmation_mailer
+	def collaboration_confirmation
 		@partner = params[:partner]
 		@organizer = params[:organizer]
 		@hotel = params[:hotel]

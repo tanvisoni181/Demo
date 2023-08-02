@@ -1,18 +1,23 @@
-<h3>List of Hotels for Organizer <%= current_user.email %></h3>
-<table>
-	<thead>
-		<th>Hotel Name</th>
-		<th>City</th>
-		<th>Booking</th>
-	</thead>
-	<tbody>
-		<% @hotels.each do |hotel| %>
-		<tr>
-			<td><%= hotel.hotel_name%></td>
-			<td><%= hotel.city %></td>
-			<td><%= link_to 'Book here', new_organizer_tour_hotel_collaborate_path(hotel_id: hotel.id) %></td>
-       <% end %>
-       <%= paginate @hotels %>
-       </tr>
-</tbody>
-</table>
+<div class="container mt-5">
+  <h3>List of Hotels for Organizer <%= current_user.email %></h3>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Hotel Name</th>
+        <th>City</th>
+        <th>Booking</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @hotels.each do |hotel| %>
+        <tr>
+          <td><%= hotel.hotel_name %></td>
+          <td><%= hotel.city %></td>
+          <td><%= link_to 'Book here', new_organizer_tour_hotel_collaborate_path(hotel_id: hotel.id)%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @hotels, outer_window: 0, inner_window: 2 %>
+</div>

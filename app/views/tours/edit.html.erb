@@ -1,41 +1,53 @@
-<h3>Edit Tour <%= @tour.destination_name %></h3>
-<%= form_with model: [ @organizer, @tour ] do |f| %>
+<div class="container mt-5">
+  <h3>Edit Tour <%= @tour.destination_name %></h3>
 
-<div>
-	<%= f.label :images %>
-	<%= f.file_field :images%>
-</div>
-<br>
-<div>
-	<%= f.label :destination_name %>
-	<%= f.text_field :destination_name%>
-</div>
-<br>
-<div>
-	<%= f.label :pickup_and_dropping_point %>
-	<%= f.text_field :pickup_and_dropping_point %>
-</div>
-<br>
-<div>
-	<%= f.label :pickup_date %>
-	<%= f.date_field :pickup_date %>
-</div>
-<br>
-<div>
+   <div >
+    <% if @tour.errors.any? %>
+      <% @tour.errors.full_messages.each do |msg| %>
+        <span style="background-color: red;"><%= msg %><br></span>
+      <% end %>
+    <% end %> 
+  </div>
 
-	<%= f.label :dropping_date %>
-	<%= f.date_field :dropping_date %>
+  <%= form_with model: [@organizer, @tour], class: "form" do |f| %>
+    <div class="form-group">
+      <%= f.label :images %>
+      <%= f.file_field :images, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :destination_name %>
+      <%= f.text_field :destination_name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :pickup_and_dropping_point %>
+      <%= f.text_field :pickup_and_dropping_point, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :pickup_date %>
+      <%= f.date_field :pickup_date, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :dropping_date %>
+      <%= f.date_field :dropping_date, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :inclusions %>
+      <%= f.text_area :inclusions, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :amount %>
+      <%= f.number_field :amount, class: "form-control" %>
+    </div>
+
+    <div class="btn-group d-flex justify-content-between">
+      <%= f.submit "Update Tour",class: 'btn btn-danger nav-link' %>
+    </div>
+  <% end %>
 </div>
-<br>
-<div>
-	<%= f.label :inclusions %>
-	<%= f.text_area :inclusions%>
-</div>
-<br>
-<div>
-	<%= f.label :amount %>
-	<%= f.number_field :amount %>
-</div>
-<br>
-<div><%= f.submit %></div>
-<% end %>
+

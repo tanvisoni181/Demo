@@ -1,36 +1,34 @@
-<h3>Booking Form</h3>
-<div>
- <% if @booking.errors.any? %>
-  <% @booking.errors.full_messages.each do |msg| %>
-    <p> <%= msg %></p>
+<div class="container mt-4">
+  <h3 class="text-center">Booking Form</h3>
+  <div  role="alert">
+    <% if @booking.errors.any? %>
+      <% @booking.errors.full_messages.each do |msg| %>
+        <%= msg %><br>
+      <% end %>
+    <% end %> 
+  </div>
+
+  <%= form_with model: [@traveller, @traveller.bookings.build], class: "form" do |f| %>
+    <%= f.hidden_field :tour_id, value: @tour.id %>
+    
+    <div class="form-group">
+      <%= f.label :traveller_name %>
+      <%= f.text_field :traveller_name, class: "form-control" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :number_of_participants %>
+      <%= f.number_field :no_of_travellers, class: "form-control" %>
+    </div>
+    
+    <div class="btn-group d-flex justify-content-between">
+      <%= f.submit "Submit Booking", class: 'btn btn-danger nav-link' %>
+    </div>
   <% end %>
- <% end %> 
- 
 </div>
-<%= form_with model: [@traveller, @traveller.bookings.build] do |f| %>
-  
-  <%= f.hidden_field :tour_id, value: @tour.id%>
-
-  
-  <div>
-    <%= f.label :traveller_name %>
-    <%= f.text_field :traveller_name %>
-  </div>
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
-  <div>
-    <%= f.label :number_of_participants %>
-    <%= f.number_field :no_of_travellers %>
-  </div>
-  
-  <%= f.submit "Submit Booking" %>
-<% end %>
-
-
-
-
-
-
 

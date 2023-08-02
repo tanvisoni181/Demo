@@ -1,5 +1,14 @@
-<h3>Check details</h3>
-<p>Hotel Name: <%= @hotel.hotel_name %></p>
-<p>City: <%= @hotel.city %></p>
-<button><%= link_to 'Edit details', edit_partner_hotel_path(@hotel) %> </button>        
-<button><%= link_to 'Registered',register_path(@hotel) %></button>
+<div class="container mt-5">
+  <h3>Check details</h3>
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text"><strong>Hotel Name:</strong> <%= @hotel.hotel_name %></p>
+      <p class="card-text"><strong>City:</strong> <%= @hotel.city %></p>
+      <div class="btn-group d-flex justify-content-between">
+       <%= link_to 'Edit details', edit_partner_hotel_path(@hotel),class: 'btn btn-danger nav-link'%>
+       <%= link_to 'Back', info_path(@hotel),class: 'btn btn-danger nav-link'%>
+      </div>
+    </div>
+  </div>
+</div>
+

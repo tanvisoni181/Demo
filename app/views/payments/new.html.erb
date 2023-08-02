@@ -1,6 +1,6 @@
 <!-- Payment Form -->
 <center>
- <form action="<%= create_payment_path(traveller_id: @booking.traveller.id, tour_id: @booking.tour.id) %>" method="post">
+ <form action="<%= create_payment_path(tour_id: @booking.tour.id) %>" method="post">
   <%= csrf_meta_tags %>
 
   <script

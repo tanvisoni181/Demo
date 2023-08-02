@@ -1,20 +1,28 @@
-<!-- Booking Form -->
-<h3>Booking Confirmation</h3>
+<div class="container mt-5">
+  <!-- Booking Confirmation -->
+  <h3 class="text-center">Booking Confirmation</h3>
 
-<div>
-<p>Booking ID: <%= @booking.id %></p>
-<p>Tour: <%= @booking.tour.destination_name %></p>
-<p>Pickup and Dropping Point: <%= @booking.tour.pickup_and_dropping_point %></p>
-<p>Pickup Date: <%= @booking.tour.pickup_date %></p>
-<p>Dropping Date: <%= @booking.tour.dropping_date%></p>
-<p>Traveller: <%= @booking.traveller_name %></p>
-<p>Email: <%= @booking.email %></p>
-<p>Number of traveller: <%= @booking.no_of_travellers %></p>
-<p>Total Amount: <%= @booking.no_of_travellers * @booking.tour.amount%></p>
-<div>
-<button><%= link_to 'Back', root_path %></button>	
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text"><strong>Booking ID:</strong> <%= @booking.id %></p>
+      <p class="card-text"><strong>Tour:</strong> <%= @booking.tour.destination_name %></p>
+      <p class="card-text"><strong>Pickup and Dropping Point:</strong> <%= @booking.tour.pickup_and_dropping_point %></p>
+      <p class="card-text"><strong>Pickup Date:</strong> <%= @booking.tour.pickup_date %></p>
+      <p class="card-text"><strong>Dropping Date:</strong><%= @booking.tour.dropping_date %></p>
+      <p class="card-text"><strong>Traveller:</strong> <%= @booking.traveller_name %></p>
+      <p class="card-text"><strong>Email:</strong> <%= @booking.email %></p>
+      <p class="card-text"><strong>Number of Travellers:</strong> <%= @booking.no_of_travellers %></p>
+      <p class="card-text"><strong>Total Amount:</strong> <%= @booking.no_of_travellers * @booking.tour.amount %></p>
+ 
 
-<button><%= link_to 'Pay now', new_payment_path(traveller_id: @booking.traveller.id, tour_id: @booking.tour.id) %></button>
+      <div class="btn-group d-flex justify-content-between">
+     
+       <%= link_to 'Pay now', new_payment_path(booking_id:@booking.id, traveller_id: @booking.traveller.id, tour_id: @booking.tour.id),class: 'btn btn-danger nav-link'%>
+     </div>
+    </div>
+  </div>
+</div>
+
 
 
 

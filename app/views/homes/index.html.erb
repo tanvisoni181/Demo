@@ -1,44 +1,40 @@
 <% if user_signed_in? %> 
- <div><h3> Welcome <%= current_user.email %> </h3></div>
+  <div><h3> Welcome <%= current_user.email %> </h3></div>
 
- <%if current_user.type == "Organizer"%>
-     
-    <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %></p>
-     <ul>
-      <li> <%= link_to "Organizer Details", organizer_path(current_user)%></li>
-      <li> <%= link_to "Tour Details", organizer_tours_path(current_user.id)%></li>
-      </ul>
-        
+  <%if current_user.type == "Organizer"%>
+    <center>
+      <p> <%= link_to "Organizer Details", organizer_path(current_user)%></p>
+      <p> <%= link_to "Tour Details", organizer_tours_path(current_user.id)%></p>
+   </center>
 
 
-<% elsif current_user.type == "Traveller" %>
-     <%#= render 'travellers/index' %>
-     <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %> </p>
-     <ul>
-      <li><%= link_to "see all avaliable tours",travellers_path %></li>
-      <li><%= link_to 'see Booked Tours', traveller_bookings_path(current_user.id)%></li></ul>
 
-<% elsif current_user.type == "Partner" %>
-     <p><%= button_to "Sign out", destroy_user_session_path, method: :delete %></p>
-      <p><%= link_to "Click Here for Details", partner_path(current_user.id) %></p>
-      <p><%= link_to "See Registered Hotels ", info_path(current_user.id) %></p>
+  <% elsif current_user.type == "Traveller" %>
+    <%#= render 'travellers/index' %>
+    <center>
+      <p><%= link_to "see all avaliable tours",travellers_path %></p>
+      <p><%= link_to 'see Booked Tours', traveller_bookings_path(current_user.id)%></p><center>
 
-<% else %>
-      <%= button_to "Log in", new_user_session_path %> 
-      <h1 class="text-center">GoTravel.com</h1><br><br>
-      <div class="text-center">  
+  <% elsif current_user.type == "Partner" %>
+    <center><p><%= link_to "Click Here for Details", partner_path(current_user.id) %></p>
+    <p><%= link_to "See Registered Hotels ", info_path(current_user.id) %></p></center>
+
+  <% else %>
+    <%= button_to "Log in", new_user_session_path %> 
+    <h1 class="text-center">GoTravel.com</h1><br><br>
+    <div class="text-center">  
       <%= button_to "Sign Up",new_user_registration_path,method: :get%><br>
-      </div>
-<%end%>
+    </div>
+  <%end%>
 <% else %>
     
-      <center><h1 class="text-center">GoTravel.com</h1><br><br></center>
-     <center> <div class="text-center">
-       <%= button_to "Log in", new_user_session_path %> <br>  
-      <%= button_to "Sign Up",new_user_registration_path,method: :get%><br>
-      </div>  
-      </center>
- <% end %>
+  <center><h1 class="text-center">GoTravel.com</h1><br><br></center>
+  <center> <div class="text-center">
+    <%= button_to "Log in", new_user_session_path %> <br>  
+    <%= button_to "Sign Up",new_user_registration_path,method: :get%><br>
+    </div>  
+    </center>
+<% end %>
 
 
 

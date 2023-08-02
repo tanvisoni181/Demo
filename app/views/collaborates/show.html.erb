@@ -1,9 +1,21 @@
-<h3>Congratulations!!! Your Booking Confirmed...</h3>
-<%= flash[:notice]%> 
-<p>Your Booking id is : <%= @collaborate.id %></p>
-<p>Hotel Name: <%= @collaborate.hotel.hotel_name %>
-<p>No of Rooms are Booked: <%= @collaborate.no_of_rooms %></p>
-<p>Room Type are: <%= @collaborate.room_type %></p>
-<p>Date of Check In: <%= @collaborate.check_in %></p>
-<p>Date of Check Out: <%= @collaborate.check_out %></p>
-<button><%= link_to 'Back', organizer_tour_path(@organizer, id: @tour.id)%></button>
+<div class="container mt-5">
+  <h3 class="text-success">Congratulations!!! Your Booking Confirmed...</h3>
+  <div >
+    <span style="background-color:green;"><%= flash[:notice] %></span>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text"><strong>Your Booking id is:</strong> <%= @collaborate.id %></p>
+      <p class="card-text"><strong>Hotel Name:</strong> <%= @collaborate.hotel.hotel_name %></p>
+      <p class="card-text"><strong>No of Rooms are Booked:</strong> <%= @collaborate.no_of_rooms %></p>
+      <p class="card-text"><strong>Room Type:</strong> <%= @collaborate.room_type %></p>
+      <p class="card-text"><strong>Date of Check In:</strong> <%= @collaborate.check_in %></p>
+      <p class="card-text"><strong>Date of Check Out:</strong> <%= @collaborate.check_out %></p>
+
+      <div class="btn-group d-flex justify-content-between"> 
+       <%= link_to 'Back', organizer_tour_path(@organizer, id: @tour.id),class: 'btn btn-danger nav-link' %>
+      </div>
+    </div>
+  </div>    
+</div>
+

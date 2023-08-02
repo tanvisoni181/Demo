@@ -1,12 +1,16 @@
-<h3>Edit Hotel details</h3>
-<%= form_with model: [@partner, @hotel] do |f| %>
-<div class="field">
-	<%= f.label :hotel_name %>
-	<%= f.text_field :hotel_name %>
+<div class="container mt-5">
+  <h3>Edit your hotel!!</h3>
+  <%= form_with model: [@partner, @hotel], class: "form-horizontal" do |f| %>
+    <div class="form-group">
+      <%= f.label :hotel_name, class: "control-label" %>
+      <%= f.text_field :hotel_name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :city, class: "control-label" %>
+      <%= f.text_field :city, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Submit", class: 'btn btn-danger nav-link' %>
+    </div>
+  <% end %>
 </div>
-<div class="field">
-	<%= f.label :city %>
-	<%= f.text_field :city %>
-</div>
-<div> <%= f.submit %></div>
-<% end %>

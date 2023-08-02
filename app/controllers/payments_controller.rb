@@ -3,7 +3,7 @@ class PaymentsController < ApplicationController
 
   def new 
     @traveller = Traveller.find(current_user.id)
-    @booking = @traveller.bookings.find(params[:id]) 
+    @booking = @traveller.bookings.find_by(id: params[:booking_id]) 
   end
 
   def create
@@ -58,7 +58,7 @@ class PaymentsController < ApplicationController
     #   payment = payment_intent.id,
     #   {amount: amount}
     #   )
-    redirect_to payment_path(payment_intent.id)
+    redirect_to traveller_booking_payment_path(@traveller, @booking,payment_intent.id)
 
     
     
