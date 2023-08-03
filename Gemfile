@@ -19,7 +19,6 @@ gem 'byebug', '~> 11.1', '>= 11.1.3'
 gem 'date_validator', '~> 0.12.0'
 gem 'devise', '~> 4.9', '>= 4.9.2'
 gem 'dotenv-rails', groups: %i[development test]
-gem 'faker', '~> 3.2'
 gem 'image_processing', '>= 1.2'
 gem 'kaminari'
 gem 'sass-rails', '~> 6.0'
@@ -27,7 +26,10 @@ gem 'stripe'
 gem 'validates_timeliness', '~> 7.0.0.beta1'
 group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
+gem 'rails-controller-testing', '~> 0.0.3'
 gem 'rubocop', '~> 1.55', require: false
 gem 'cancancan'
 

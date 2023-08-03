@@ -5,9 +5,4 @@ class PartnersController < ApplicationController
     @partner = Partner.find(params[:id])
   end
 
-  private
-
-  def partner_params
-    params.require(:partner).permit(:name, :email, :phone_no, :address)
-  end
 end
