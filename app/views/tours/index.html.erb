@@ -16,8 +16,10 @@
       <tr>
         <td><%= tour.destination_name %></td>
         <td><%= link_to 'Show', organizer_tour_path(id: tour.id) %></td>
-        <td><%= link_to 'Edit', edit_organizer_tour_path(id: tour.id) %></td>
+          <td><%= link_to 'Edit', edit_organizer_tour_path(id: tour.id) %></td>
         <td><%= link_to 'Delete', destroy_tour_path(tour.organizer, tour), turbo_method: :delete, data:{confirm:'Are you sure?'} %></td>
+       
+      
       </tr>
       <% end %>
     </tbody>

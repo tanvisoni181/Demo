@@ -1,12 +1,14 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class BookingsControllerTest < ActionDispatch::IntegrationTest
-  test "should get new" do
+  test 'should get new' do
     get bookings_new_url
     assert_response :success
   end
 
-  test "should get show" do
+  test 'should get show' do
     get bookings_show_url
     assert_response :success
   end

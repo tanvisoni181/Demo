@@ -29,8 +29,10 @@
       </div>
 
       <div class="mt-3">
+        
         <p>Booked Hotels: <%= @tour.hotels.map(&:hotel_name).join(', ') %></p>
        <%= link_to 'Select Hotels', organizer_tour_hotels_path(organizer_id: @tour.organizer.id, tour_id: @tour.id),class: 'btn btn-danger nav-link' %>
+       
       </div>
 
       <div class="mt-3">

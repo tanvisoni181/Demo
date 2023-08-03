@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTours < ActiveRecord::Migration[7.0]
   def change
     create_table :tours do |t|
@@ -8,10 +10,8 @@ class CreateTours < ActiveRecord::Migration[7.0]
       t.string :inclusions
       t.string :images
       t.integer :amount
-      t.string :tourable_type, null:false
-      t.integer :tourable_id, null:false
-      
-
+      t.string :tourable_type, null: false
+      t.integer :tourable_id, null: false
 
       t.timestamps
     end

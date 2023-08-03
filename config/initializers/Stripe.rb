@@ -1,4 +1,6 @@
-require "stripe"
+# frozen_string_literal: true
+
+require 'stripe'
 
 Rails.configuration.stripe = {
   publishable_key: Rails.application.secrets.stripe_publishable_key,

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -12,22 +14,22 @@ gem 'sprockets-rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 
-gem 'devise', '~> 4.9', '>= 4.9.2'
 gem 'activeadmin', '~> 3.0'
-gem 'sass-rails', '~> 6.0'
-gem 'faker', '~> 3.2'
 gem 'byebug', '~> 11.1', '>= 11.1.3'
-gem 'image_processing', '>= 1.2'
-gem 'validates_timeliness', '~> 7.0.0.beta1'
-gem 'stripe'
-gem 'dotenv-rails', :groups => [:development, :test]
 gem 'date_validator', '~> 0.12.0'
+gem 'devise', '~> 4.9', '>= 4.9.2'
+gem 'dotenv-rails', groups: %i[development test]
+gem 'faker', '~> 3.2'
+gem 'image_processing', '>= 1.2'
 gem 'kaminari'
+gem 'sass-rails', '~> 6.0'
+gem 'stripe'
+gem 'validates_timeliness', '~> 7.0.0.beta1'
 group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
 end
 gem 'rubocop', '~> 1.55', require: false
-
+gem 'cancancan'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
@@ -54,7 +56,7 @@ gem 'redis', '~> 4.0'
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[ mingw mswin x64_mingw jruby ]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
@@ -67,7 +69,7 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'debug', platforms: %i[ mri mingw x64_mingw ]
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
@@ -88,4 +90,3 @@ group :test do
   gem 'webdrivers'
 end
 
-gem "pundit", "~> 2.3"

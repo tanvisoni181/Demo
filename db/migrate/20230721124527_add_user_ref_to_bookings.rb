@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddUserRefToBookings < ActiveRecord::Migration[7.0]
   def change
     remove_column :bookings, :traveller_id
