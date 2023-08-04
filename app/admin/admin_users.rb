@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register AdminUser do
+  actions :all, except: [:new, :edit,:update, :destroy]
   permit_params :email, :password, :password_confirmation
 
   index do

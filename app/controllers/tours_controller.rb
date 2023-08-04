@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ToursController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_organizer_id, only: %i[index new create show edit update destroy]
   before_action :find_tour_id, only: %i[show edit update destroy]
 

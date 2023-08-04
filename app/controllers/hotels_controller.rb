@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class HotelsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_partner, except: [:index]
   before_action :find_hotel, only: %i[show update register destroy edit]
   

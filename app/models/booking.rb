@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Booking < ApplicationRecord
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "email", "id", "no_of_travellers", "payment_date", "payment_status", "stripe_charge_id", "total_amount", "tour_id", "traveller_id", "traveller_name", "traveller_type", "updated_at"]
+  end
+  
   belongs_to :tour
   belongs_to :traveller, polymorphic: true
 

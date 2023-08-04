@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CollaboratesController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_organizer, only: %i[new create show]
   before_action :find_tour, only: %i[new create show]
   before_action :find_hotel, only: %i[index new create show]

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class BookingsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_tour, only: %i[new show index create]
   before_action :find_traveller, only: %i[index create new show]
 

@@ -13,7 +13,7 @@
         <div class="row">
           <% @tour.images.each do |image| %>
             <div class="col-md-3">
-              <%= image_tag url_for(image), class: "img-thumbnail img-fluid" %>
+              <%= image_tag url_for(image) %>
             </div>
           <% end %>
         </div>

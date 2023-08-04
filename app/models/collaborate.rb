@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class Collaborate < ApplicationRecord
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["check_in", "check_out", "created_at", "hotel_id", "id", "no_of_rooms", "room_type", "tour_id", "updated_at"]
+  end
+  
   belongs_to :hotel
   belongs_to :tour
 
